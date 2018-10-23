@@ -48,7 +48,6 @@ public class Peca {
         casa.removerPeca();
         destino.colocarPeca(this);
         casa = destino;
-            
     }
     
     
@@ -70,7 +69,6 @@ public class Peca {
             return false;
         }
         else if(casa.getTipoPeca()%2!=0 && destino.getTipoPeca()%2!=0){
-            
             return false; 
         }
         
