@@ -45,9 +45,11 @@ public class Peca {
      * @param destino nova casa que ira conter esta peca.
      */
     public void mover(Casa destino) {
-        casa.removerPeca();
-        destino.colocarPeca(this);
-        casa = destino;
+        if (podeMover(destino)) {
+            casa.removerPeca();
+            destino.colocarPeca(this);
+            casa = destino;
+        }
     }
     
     
@@ -73,7 +75,6 @@ public class Peca {
         }
         
         return null;
-        
      }
        
     

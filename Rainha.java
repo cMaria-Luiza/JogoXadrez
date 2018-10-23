@@ -19,6 +19,14 @@ public class Rainha extends Peca
          tabuleiro = new Tabuleiro();
     }
     
+    public void mover(Casa destino){
+        if(podeMover(destino)){
+            destino.colocarPeca(this);
+            casa.removerPeca();
+            casa=destino; 
+        }
+    }
+    
     public Boolean podeMover(Casa destino) {
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();

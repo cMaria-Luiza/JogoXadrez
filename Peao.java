@@ -22,16 +22,12 @@ public class Peao extends Peca
     }       
     
     public void mover(Casa destino){
-        
-        //movimentação dos peaos 
-               
-        if(podeMover(destino)==true){
+        //movimentação dos cavalos brancos e pretos        
+        if(podeMover(destino)){
                  destino.colocarPeca(this);
                  casa.removerPeca();
-                 casa=destino;
-                 troca(destino);
-            }
-        
+                 casa=destino; 
+        }
     }
     
     public Boolean podeMover(Casa destino){
@@ -148,8 +144,7 @@ public class Peao extends Peca
                }
             }while(x==JOptionPane.CLOSED_OPTION);  
          }    
-            
-        }
+    }
 }
         
        
