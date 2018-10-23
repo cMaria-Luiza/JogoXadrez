@@ -27,6 +27,7 @@ public class Peao extends Peca
                  destino.colocarPeca(this);
                  casa.removerPeca();
                  casa=destino; 
+                 troca(destino);
         }
     }
     
@@ -108,12 +109,12 @@ public class Peao extends Peca
         //quando ele chegar na posicao Y=7 ele pode escolher entre torre, cavalo, bispo e rainha para fazer a troca
         if(tipo==1 && destino.getY()==0){
             Object[] opcoes= {"Rainha", "Bispo", "Torre", "Cavalo"};
-            
             int x;
-                x=JOptionPane.showOptionDialog(null, "Escolha uma peça para troca:",
+               
+            do{
+                x = JOptionPane.showOptionDialog(null, "Escolha uma peça para troca:",
                 "O peão foi promovido",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
-            do{
                 if(x==0){
                    Peca Rainha = new Rainha(destino, 9);
                 }
@@ -125,23 +126,7 @@ public class Peao extends Peca
                 }
                 else if(x==3){
                     Peca Cavalo= new Cavalo (destino, 5);
-                } else{
-                    x=JOptionPane.showOptionDialog(null, "Escolha uma peça para troca:",
-                    "O peão foi promovido",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
-                        if(x==0){
-                       Peca Rainha = new Rainha(destino, 9);
-                    }
-                    else if(x==1){
-                        Peca Bispo= new Bispo(destino, 7);
-                    }
-                    else if(x==2){
-                        Peca Torre= new Torre (destino,3);
-                    }
-                    else if(x==3){
-                        Peca Cavalo= new Cavalo (destino, 5);
-                    }
-               }
+                }
             }while(x==JOptionPane.CLOSED_OPTION);  
          }    
     }
