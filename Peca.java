@@ -31,12 +31,13 @@ public class Peca {
     protected int tipo;
     protected Tabuleiro tabuleiro;
     protected Boolean jogador;
+    
     public Peca(Casa casa, int tipo) {
         this.casa = casa;    
         this.tipo = tipo;
         casa.colocarPeca(this);
-        tabuleiro= new Tabuleiro();
-        jogador= true;
+        tabuleiro = new Tabuleiro();
+        jogador = true;
     }
     
     /**
@@ -80,7 +81,6 @@ public class Peca {
     
     public Boolean podeMover(Casa destino){
         return null;
-        
     }
 
        
