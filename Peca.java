@@ -73,6 +73,7 @@ public class Peca {
         else if(casa.getTipoPeca()%2 != 0 && destino.getTipoPeca()%2 != 0){
             return false; 
         }
+<<<<<<< HEAD
         return null;
      }
        
@@ -82,6 +83,15 @@ public class Peca {
             mover(destino);
         }
         return null;
+=======
+        
+        return false;
+     }
+       
+    
+    public boolean podeMover(Casa destino){
+        return false;
+>>>>>>> ad77ba043b387673ac492a83abc2445ceacbb073
     }
 
        
