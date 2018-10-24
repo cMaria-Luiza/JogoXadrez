@@ -30,7 +30,7 @@ public class Peca {
     protected Casa casa;
     protected int tipo;
     protected Tabuleiro tabuleiro;
-    protected Boolean jogador;
+    protected boolean jogador;
     
     public Peca(Casa casa, int tipo) {
         this.casa = casa;    
@@ -53,24 +53,24 @@ public class Peca {
     }
     
     
-    public Boolean capturar(Casa destino){
+    public boolean capturar(Casa destino){
         //nao pode matar o rei
-        if ((casa.getTipoPeca()%2!=0 && destino.getTipoPeca()==10)||(casa.getTipoPeca()%2==0 && destino.getTipoPeca()==11)){
+        if ((casa.getTipoPeca()%2 != 0 && destino.getTipoPeca() == 10) || (casa.getTipoPeca()%2 == 0 && destino.getTipoPeca() == 11)){
             JOptionPane.showMessageDialog(null, " Xeque");
             return false;
         }
         
         //verifica os tipos das peças
-        if(casa.getTipoPeca()%2==0 && destino.getTipoPeca()%2!=0){
+        if(casa.getTipoPeca()%2 == 0 && destino.getTipoPeca()%2 != 0){
             return true;
         }
-        else if(casa.getTipoPeca()%2!=0 && destino.getTipoPeca()%2==0){
+        else if(casa.getTipoPeca()%2 != 0 && destino.getTipoPeca()%2 == 0){
             return true;
         }
-        else if(casa.getTipoPeca()%2==0 && destino.getTipoPeca()%2==0){
+        else if(casa.getTipoPeca()%2 == 0 && destino.getTipoPeca()%2 == 0){
             return false;
         }
-        else if(casa.getTipoPeca()%2!=0 && destino.getTipoPeca()%2!=0){
+        else if(casa.getTipoPeca()%2 != 0 && destino.getTipoPeca()%2 != 0){
             return false; 
         }
         
@@ -78,7 +78,7 @@ public class Peca {
      }
        
     
-    public Boolean podeMover(Casa destino){
+    public boolean podeMover(Casa destino){
         return null;
     }
 
