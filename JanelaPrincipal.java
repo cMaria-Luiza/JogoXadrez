@@ -43,13 +43,19 @@ public class JanelaPrincipal extends JFrame {
             
         }
         else { 
-                casaClicadaDestino = casaClicada;
-                jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-                        casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
-                casaClicadaOrigem.atenuar();
-                jogo.mudarTurno();
-                primeiroClique = true;
-                atualizar();             
+                if (casaClicada == casaClicadaOrigem) {
+                    casaClicadaOrigem.atenuar();
+                    primeiroClique = true;
+                }
+                else {
+                    casaClicadaDestino = casaClicada;
+                    jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
+                            casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
+                    casaClicadaOrigem.atenuar();
+                    jogo.mudarTurno();
+                    primeiroClique = true;
+                    atualizar();             
+                }
         }
     }    
     

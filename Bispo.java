@@ -18,7 +18,6 @@ public class Bispo extends Peca
          tabuleiro = new Tabuleiro();
     }
     
-<<<<<<< HEAD
     public void mover(Casa destino) {
         if (podeMover(destino)) {
             casa.removerPeca();
@@ -46,8 +45,7 @@ public class Bispo extends Peca
         }
         return false;
     }
-=======
->>>>>>> ad77ba043b387673ac492a83abc2445ceacbb073
+
 }
     
 
