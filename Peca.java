@@ -74,12 +74,12 @@ public class Peca {
             return false; 
         }
         
-        return null;
+        return false;
      }
        
     
     public boolean podeMover(Casa destino){
-        return null;
+        return false;
     }
 
        

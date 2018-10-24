@@ -20,14 +20,14 @@ public class Rainha extends Peca
     }
     
     public void mover(Casa destino){
-        if(podeMover(destino)){
+        if(podeMover(destino) == true){
             destino.colocarPeca(this);
             casa.removerPeca();
             casa=destino; 
         }
     }
     
-    public Boolean podeMover(Casa destino) {
+    public boolean podeMover(Casa destino) {
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
@@ -75,6 +75,7 @@ public class Rainha extends Peca
                     }
                 }
             }
+            return false;
         }
         return true;
     }

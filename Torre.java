@@ -25,8 +25,8 @@ public class Torre extends Peca
             casa=destino; 
         }
     }
-    
-    public Boolean podeMover(Casa destino) {
+    /*
+    public boolean podeMover(Casa destino) {
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
@@ -34,6 +34,59 @@ public class Torre extends Peca
         
         if ((xDestino == yOrigem && yDestino != yOrigem) || (xDestino != xOrigem && yDestino == yOrigem)) {
             return true;
+        }
+        return false;
+    }
+    */
+   
+    public boolean podeMover(Casa destino){
+        int xOrigem = casa.getX();
+        int yOrigem = casa.getY();
+        int xDestino = destino.getX();
+        int yDestino = destino.getY();
+        //verifica se esta andando na horizontal e vertical
+        // verifica se possui peça entre a casa de origem e a casa de destino
+        if(tipo == 2 || tipo == 3){
+            if((xOrigem != xDestino && yOrigem == yDestino) || (yOrigem != yDestino && xOrigem == xDestino)){
+                if(destino.possuiPeca() == false || capturar(destino) == true){                                     
+                    if(xOrigem > xDestino){
+                        for(int linha = xOrigem; linha >= xDestino; linha--){
+
+                            if(tabuleiro.getCasa(linha,yOrigem).possuiPeca()==false){
+                                return true;
+                            }
+                            
+                        }
+                    } 
+                    else if(xOrigem < xDestino){
+                        for(int linha = xOrigem; linha <= xDestino; linha++){
+                            
+                            if(tabuleiro.getCasa(linha,yOrigem).possuiPeca()==false){
+                                return true;
+                            }
+                           
+                        }
+                    } else if(yOrigem > yDestino){
+                        for(int coluna = yOrigem; coluna >= yDestino; coluna--){
+                            
+                            if(tabuleiro.getCasa(xOrigem, coluna).possuiPeca()==false){
+                                return true;
+                            } 
+                            
+                        }
+                    }
+                    else if(yOrigem < yDestino){
+                        for(int coluna = yOrigem; coluna <= yDestino; coluna++){
+                            
+                            if( tabuleiro.getCasa(xOrigem, coluna).possuiPeca()==false){
+                                return true;
+                            }
+                            
+                        }
+                    }
+                }
+            }          
+                    
         }
         return false;
     }

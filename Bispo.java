@@ -17,5 +17,6 @@ public class Bispo extends Peca
          tabuleiro = new Tabuleiro();
     }
     
-    
 }
+    
+
