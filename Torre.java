@@ -19,10 +19,10 @@ public class Torre extends Peca
     }
     
     public void mover(Casa destino){      
-        if(podeMover(destino)){
-            destino.colocarPeca(this);
+        if (podeMover(destino)) {
             casa.removerPeca();
-            casa=destino; 
+            destino.colocarPeca(this);
+            casa = destino;
         }
     }
     

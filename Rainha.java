@@ -20,10 +20,10 @@ public class Rainha extends Peca
     }
     
     public void mover(Casa destino){
-        if(podeMover(destino)){
-            destino.colocarPeca(this);
+        if (podeMover(destino)) {
             casa.removerPeca();
-            casa=destino; 
+            destino.colocarPeca(this);
+            casa = destino;
         }
     }
     
@@ -41,11 +41,13 @@ public class Rainha extends Peca
                 xOrigem = xDestino;
                 xDestino = valorMaior;
             }
+            
             if (yOrigem > yDestino) {
                 int valorMaior = yOrigem;
                 yOrigem = yDestino;
                 yDestino = valorMaior;
             }
+            // movimento horizontal 
             if (xDestino == xOrigem){
                 // determina yOrigem como menor valor e yDestino com o maior valor
                 // ajuda a percorrer o for do menor para o maior
@@ -57,6 +59,7 @@ public class Rainha extends Peca
                     }
                 }
             }
+            // movimento vertical
             else if (yDestino == yOrigem) {
                 // vasculhar as casas até o xDestino verificando se tem peca adversaria, se tiver, nao pode mover
                 for (int i = xOrigem; i < xDestino; i++) {
@@ -65,6 +68,7 @@ public class Rainha extends Peca
                     }
                 }
             }
+            // movimento diagonal
             else {                
                 for (int i = xOrigem; i < xDestino; i++) {
                     for (int j = yOrigem; j < yDestino; j++) {

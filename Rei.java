@@ -33,7 +33,7 @@ public class Rei extends Peca
         }        
      }
     
-    public boolean podeMover(Casa destino){
+    public Boolean podeMover(Casa destino){
         
         if(tipo == 10 || tipo == 11 && (destino.possuiPeca() == false ||  capturar(destino) == true)&&
         (casa.getX()+1 == destino.getX() || casa.getX()-1 == destino.getX() || casa.getX() == destino.getX()) &&

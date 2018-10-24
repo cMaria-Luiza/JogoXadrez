@@ -16,22 +16,21 @@ public class Peao extends Peca
      */
     public Peao(Casa casa, int tipo)
     {
-      super(casa, tipo);  
-      tabuleiro = new Tabuleiro();
+        super(casa, tipo);  
+        tabuleiro = new Tabuleiro();
       
     }       
     
     public void mover(Casa destino){
-        //movimentação dos cavalos brancos e pretos        
-        if(podeMover(destino)){
-                 destino.colocarPeca(this);
-                 casa.removerPeca();
-                 casa = destino; 
-                 troca(destino);
+        if (podeMover(destino)) {
+            casa.removerPeca();
+            destino.colocarPeca(this);
+            casa = destino;
+            troca(destino);
         }
     }
     
-    public boolean podeMover(Casa destino){
+    public Boolean podeMover(Casa destino){
         // condições de movimento de peao branco
         //primeiro if se for o primeiro movimento pode andar duas casas em Y
         //segundo if condição de movimentar apenas uma casa 

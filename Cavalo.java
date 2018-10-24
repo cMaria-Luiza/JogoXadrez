@@ -19,15 +19,14 @@ public class Cavalo extends Peca
     }
     
     public void mover(Casa destino) {
-        //movimentação dos cavalos brancos e pretos        
-        if(podeMover(destino)){
-            destino.colocarPeca(this);
+        if (podeMover(destino)) {
             casa.removerPeca();
-            casa=destino; 
+            destino.colocarPeca(this);
+            casa = destino;
         }
     }
      
-    public boolean podeMover(Casa destino) {
+    public Boolean podeMover(Casa destino) {
         
         // dentro do if vai verificar se o destino possui peca e se possuir o movimento so sera valido se o tipo for diferente do tipo da casa
         if (((tipo == 4 || tipo == 5)  && (destino.possuiPeca() == false ||  capturar(destino) == true)) &&

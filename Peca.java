@@ -53,7 +53,7 @@ public class Peca {
     }
     
     
-    public boolean capturar(Casa destino){
+    public Boolean capturar(Casa destino){
         //nao pode matar o rei
         if ((casa.getTipoPeca()%2 != 0 && destino.getTipoPeca() == 10) || (casa.getTipoPeca()%2 == 0 && destino.getTipoPeca() == 11)){
             JOptionPane.showMessageDialog(null, " Xeque");
@@ -73,12 +73,14 @@ public class Peca {
         else if(casa.getTipoPeca()%2 != 0 && destino.getTipoPeca()%2 != 0){
             return false; 
         }
-        
         return null;
      }
        
     
-    public boolean podeMover(Casa destino){
+    public Boolean podeMover(Casa destino){
+        if (podeMover(destino)){
+            mover(destino);
+        }
         return null;
     }
 
