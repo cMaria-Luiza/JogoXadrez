@@ -7,13 +7,10 @@
  */
 public class Rei extends Peca
 {
-    // instance variables - replace the example below with your own
-    private Tabuleiro tabuleiro;
 
-    public Rei(Casa casa, int tipo)
+    public Rei(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
-       super(casa,tipo);
-       tabuleiro = new Tabuleiro();
+       super(casa, tipo, tabuleiro);
     }
       
     public void mover(Casa destino) {

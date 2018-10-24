@@ -13,26 +13,21 @@ public class Rainha extends Peca
         /**
      * Constructor for objects of class Rainha
      */
-    public Rainha(Casa casa, int tipo)
+    public Rainha(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
-        super(casa, tipo);
-         tabuleiro = new Tabuleiro();
+        super(casa, tipo, tabuleiro);
     }
     
     public void mover(Casa destino){
-<<<<<<< HEAD
-        if (podeMover(destino)) {
-=======
         if(podeMover(destino) == true){
             destino.colocarPeca(this);
->>>>>>> ad77ba043b387673ac492a83abc2445ceacbb073
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
         }
     }
     
-    public boolean podeMover(Casa destino) {
+    public Boolean podeMover(Casa destino) {
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
@@ -89,3 +84,4 @@ public class Rainha extends Peca
         return true;
     }
 }
+

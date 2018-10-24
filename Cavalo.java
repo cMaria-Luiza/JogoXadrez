@@ -7,15 +7,13 @@
  */
 public class Cavalo extends Peca
 {
-    private Tabuleiro tabuleiro;
     
     /**
      * Constructor for objects of class Cavalo
      */
-    public Cavalo(Casa casa, int tipo)
+    public Cavalo(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
-      super(casa, tipo);
-      tabuleiro = new Tabuleiro();
+      super(casa, tipo, tabuleiro);
     }
     
     public void mover(Casa destino) {

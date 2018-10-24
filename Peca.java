@@ -32,11 +32,11 @@ public class Peca {
     protected Tabuleiro tabuleiro;
     protected boolean jogador;
     
-    public Peca(Casa casa, int tipo) {
+    public Peca(Casa casa, int tipo, Tabuleiro tabuleiro) {
         this.casa = casa;    
         this.tipo = tipo;
         casa.colocarPeca(this);
-        tabuleiro = new Tabuleiro();
+        this.tabuleiro = tabuleiro;
         jogador = true;
     }
     
@@ -48,11 +48,10 @@ public class Peca {
         if (podeMover(destino)) {
             casa.removerPeca();
             destino.colocarPeca(this);
-            casa = destino;
+            casa = destino; 
         }
     }
-    
-    
+   
     public Boolean capturar(Casa destino){
         //nao pode matar o rei
         if ((casa.getTipoPeca()%2 != 0 && destino.getTipoPeca() == 10) || (casa.getTipoPeca()%2 == 0 && destino.getTipoPeca() == 11)){
@@ -73,27 +72,13 @@ public class Peca {
         else if(casa.getTipoPeca()%2 != 0 && destino.getTipoPeca()%2 != 0){
             return false; 
         }
-<<<<<<< HEAD
         return null;
      }
        
     
     public Boolean podeMover(Casa destino){
-        if (podeMover(destino)){
-            mover(destino);
-        }
-        return null;
-=======
-        
         return false;
-     }
-       
-    
-    public boolean podeMover(Casa destino){
-        return false;
->>>>>>> ad77ba043b387673ac492a83abc2445ceacbb073
     }
-
        
     /**
      * Valor    Tipo

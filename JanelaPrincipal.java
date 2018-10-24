@@ -52,7 +52,6 @@ public class JanelaPrincipal extends JFrame {
                     jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
                             casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
                     casaClicadaOrigem.atenuar();
-                    jogo.mudarTurno();
                     primeiroClique = true;
                     atualizar();             
                 }
@@ -73,6 +72,7 @@ public class JanelaPrincipal extends JFrame {
         // configura action listener para o menu novo
         menuNovo.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                resetar();
                 criarNovoJogo();
             }
         });
@@ -99,6 +99,11 @@ public class JanelaPrincipal extends JFrame {
         atualizar();
     }
 
+    private void resetar() {
+        primeiroClique = true;
+        casaClicadaOrigem.atenuar();
+    }
+        
     private void atualizar() {
         tabuleiroGUI.atualizar(jogo);
     }

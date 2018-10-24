@@ -7,15 +7,13 @@
  */
 public class Bispo extends Peca
 {
-    private Tabuleiro tabuleiro;
     
     /**
      * Constructor for objects of class Bispo
      */
-    public Bispo(Casa casa, int tipo)
+    public Bispo(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
-        super(casa, tipo);
-         tabuleiro = new Tabuleiro();
+        super(casa, tipo, tabuleiro);
     }
     
     public void mover(Casa destino) {

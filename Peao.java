@@ -8,17 +8,13 @@ import javax.swing.*;
  */
 public class Peao extends Peca 
 {
-    // instance variables - replace the example below with your own
-    private Tabuleiro tabuleiro;
 
     /**
      * Constructor for objects of class Peao
      */
-    public Peao(Casa casa, int tipo)
+    public Peao(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
-        super(casa, tipo);  
-        tabuleiro = new Tabuleiro();
-      
+        super(casa, tipo, tabuleiro); 
     }       
     
     public void mover(Casa destino){
@@ -75,16 +71,16 @@ public class Peao extends Peca
                 "O peão foi promovido",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
                 if(x == 0){
-                   Rainha Rainha = new Rainha(destino, 8);
+                   Rainha Rainha = new Rainha(destino, 8, tabuleiro);
                  }
                 else if(x == 1){
-                    Bispo Bispo = new Bispo(destino, 6);
+                    Bispo Bispo = new Bispo(destino, 6, tabuleiro);
                 }
                 else if(x == 2){
-                   Torre Torre = new Torre (destino,2);
+                   Torre Torre = new Torre (destino,2, tabuleiro);
                 }
                 else if(x == 3){
-                   Cavalo Cavalo = new Cavalo (destino, 4);
+                   Cavalo Cavalo = new Cavalo (destino, 4, tabuleiro);
                 }                
             } while(x == JOptionPane.CLOSED_OPTION);
             
@@ -100,16 +96,16 @@ public class Peao extends Peca
                 "O peão foi promovido",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, opcoes, opcoes[0]);
                 if(x == 0){
-                   Peca Rainha = new Rainha(destino, 9);
+                   Peca Rainha = new Rainha(destino, 9, tabuleiro);
                 }
                 else if(x == 1){
-                    Peca Bispo= new Bispo(destino, 7);
+                    Peca Bispo= new Bispo(destino, 7, tabuleiro);
                 }
                 else if(x == 2){
-                    Peca Torre= new Torre (destino,3);
+                    Peca Torre= new Torre (destino,3, tabuleiro);
                 }
                 else if(x == 3){
-                    Peca Cavalo = new Cavalo (destino, 5);
+                    Peca Cavalo = new Cavalo (destino, 5, tabuleiro);
                 }
             }while(x == JOptionPane.CLOSED_OPTION);  
          }    
