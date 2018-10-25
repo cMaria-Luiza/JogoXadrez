@@ -27,13 +27,16 @@ public class Rei extends Peca
      }
     
     public boolean podeMover(Casa destino){
-        
-        if(tipo == 10 || tipo == 11 && (destino.possuiPeca() == false ||  capturar(destino) == true)&&
-        (casa.getX()+1 == destino.getX() || casa.getX()-1 == destino.getX() || casa.getX() == destino.getX()) &&
-        (casa.getY()+1 == destino.getY() || casa.getY()-1 == destino.getY() || casa.getY() == destino.getY())){
-          return true;
-        }
-        
+       nt xOrigem = casa.getX();
+        int yOrigem = casa.getY();
+        int xDestino = destino.getX();
+        int yDestino = destino.getY();
+       
+        if(destino.possuiPeca() == false ||  capturar(destino) == true){
+            if(xOrigem+1 == xDestino || xOrigem-1 == xDestino || yOrigem+1 == yDestino || yOrigem-1 == yDestino){
+                return true;
+            }
+        }      
         return false;
     }
     
