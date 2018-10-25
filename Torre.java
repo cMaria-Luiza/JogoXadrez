@@ -6,6 +6,7 @@
  * @version (a version number or a date)
  */
 public class Torre extends Peca
+    private boolean jogada;
 {
 
     /**
@@ -13,7 +14,8 @@ public class Torre extends Peca
      */
     public Torre(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
-       super(casa, tipo, tabuleiro); 
+       super(casa, tipo, tabuleiro);
+        jogada = false;
     }
     
     public void mover(Casa destino){      
@@ -21,6 +23,7 @@ public class Torre extends Peca
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
+            jogada = true;
         }
     }
     
