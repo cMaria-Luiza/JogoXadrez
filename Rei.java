@@ -6,10 +6,9 @@
  * @version (a version number or a date)
  */
 public class Rei extends Peca
-    private boolean jogada;
-
 {
-
+    private boolean jogada;
+    
     public Rei(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
        super(casa, tipo, tabuleiro);

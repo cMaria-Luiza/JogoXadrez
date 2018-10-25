@@ -50,7 +50,8 @@ public class Peao extends Peca
         if(tipo == 1  && destino.possuiPeca() == false && casa.getY() == 6 && casa.getX() == destino.getX() && casa.getY()-2 == destino.getY()){
             if(tabuleiro.getCasa(destino.getX(), casa.getY()-1).possuiPeca() == false){
                 return true;
-            }        }
+            }        
+        }
         else if(tipo == 1  && destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()-1 == destino.getY()){
             return true;
         }
