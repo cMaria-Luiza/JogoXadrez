@@ -76,7 +76,7 @@ public class Peca {
      }
        
     
-    public Boolean podeMover(Casa destino){
+    public boolean podeMover(Casa destino){
         return false;
     }
      
