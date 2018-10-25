@@ -26,7 +26,7 @@ public class Peao extends Peca
         }
     }
     
-    public Boolean podeMover(Casa destino){
+    public boolean podeMover(Casa destino){
         // condições de movimento de peao branco
         //primeiro if se for o primeiro movimento pode andar duas casas em Y
         //segundo if condição de movimentar apenas uma casa 
