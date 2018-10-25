@@ -100,8 +100,11 @@ public class JanelaPrincipal extends JFrame {
     }
 
     private void resetar() {
-        primeiroClique = true;
-        casaClicadaOrigem.atenuar();
+        if(casaClicadaOrigem != null) {
+            primeiroClique = true;
+            casaClicadaOrigem.atenuar();
+        }
+        // jogador não clicou em alguma casa, então faz nada
     }
         
     private void atualizar() {

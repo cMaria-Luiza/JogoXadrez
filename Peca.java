@@ -79,7 +79,14 @@ public class Peca {
     public Boolean podeMover(Casa destino){
         return false;
     }
-       
+     
+    public int getDistancia(int i){
+        if(i < 0){
+            return -i;
+        }
+        return i;
+    }
+    
     /**
      * Valor    Tipo
      *   0   Branca (Peao)

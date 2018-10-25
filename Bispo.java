@@ -29,21 +29,40 @@ public class Bispo extends Peca
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
         int yDestino = destino.getY();
+    
+        int distanciaX = getDistancia(xDestino - xOrigem);
+        int distanciaY = getDistancia(yDestino - yOrigem);
         
-        if (xDestino != xOrigem && yDestino != yOrigem) {
-            for (int i = xOrigem; i < xDestino; i++) {
-                for (int j = yOrigem; j < yDestino; j++) {
-                    if ((tabuleiro.getCasa(i, yOrigem).possuiPeca() && tabuleiro.getCasa(i, yOrigem).getTipoPeca()%2 != casa.getTipoPeca()%2)
-                        && (tabuleiro.getCasa(xOrigem, j).possuiPeca() && tabuleiro.getCasa(xOrigem, j).getTipoPeca()%2 != casa.getTipoPeca()%2)) {
+        if (xOrigem > xDestino) {
+           int valorMaior = xOrigem;
+           xOrigem = xDestino;
+           xDestino = valorMaior;
+        }
+            
+        if (yOrigem > yDestino) {
+            int valorMaior = yOrigem;
+            yOrigem = yDestino;
+            yDestino = valorMaior;
+        }
+        
+        if (destino.possuiPeca() == false || capturar(destino) == true) {
+            if (xDestino != xOrigem && yDestino != yOrigem && distanciaX == distanciaY) {
+                for (int x = xOrigem + 1; x < xDestino; x++) {
+                    for (int y = yOrigem + 1; y < yDestino; y++) {
+                        Casa intermediaria = tabuleiro.getCasa(x, y);
+                        if (intermediaria.possuiPeca() == true) {
                             return false;
+                        }
                     }
                 }
+                return true;
             }
-            return true;
         }
+        // se não entrar no if, não pode mover-se
         return false;
     }
-
 }
+
+
     
 

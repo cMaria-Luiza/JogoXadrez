@@ -85,6 +85,7 @@ public class Jogo {
         //posicionar o rei preto
         Peca reiPreto= new Rei(tabuleiro.getCasa(4,7),Peca.REI_PRETO, tabuleiro);
     }    
+    
     /**
      * 
      * @param origemX linha da Casa de origem.
@@ -98,7 +99,8 @@ public class Jogo {
         Casa destino = tabuleiro.getCasa(destinoX, destinoY);
         Peca peca = origem.getPeca();
         peca.mover(destino);
-        if (origem.equals(destino)) {
+        // se destino possui uma peça é porque a peça se moveu, então pode mudar de turno 
+        if (destino.getPeca() != null && destino.getPeca().equals(peca)) {
             mudarTurno();  
         }
     }   

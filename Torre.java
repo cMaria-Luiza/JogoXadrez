@@ -86,30 +86,30 @@ public class Torre extends Peca
             // movendo-se horizontamente 
             if (xOrigem != xDestino && yOrigem == yDestino) {
                 if (xOrigem > xDestino) {
-                    int maiorValor = xOrigem;
+                    int valorMaior = xOrigem;
                     xOrigem = xDestino; // xOrigem recebe o menor valor
-                    xDestino = maiorValor; // xDestino recebe o maior valor
+                    xDestino = valorMaior; // xDestino recebe o maior valor
                 }
                 
                 // especionar casas intermediarias para saber se tem peça
-                for (int posicaoX = xOrigem; posicaoX < xDestino; posicaoX++) {
-                    Casa intermediaria = tabuleiro.getCasa(posicaoX, yOrigem);
-                    if (intermediaria.possuiPeca() == false) {
-                        return true;
+                for (int x = xOrigem; x < xDestino; x++) {
+                    Casa intermediaria = tabuleiro.getCasa(x, yOrigem);
+                    if (intermediaria.possuiPeca() == true) {
+                        return false;
                     }
                 }
             }
             // movendo-se verticalmente
             else if (xOrigem == xDestino && yOrigem != yDestino) {
                 if (yOrigem > yDestino) {
-                    int maiorValor = yOrigem;
+                    int valorMaior = yOrigem;
                     yOrigem = yDestino; // yOrigem recebe o menor valor
-                    yDestino = maiorValor; // yDestino recebe o maior valor
+                    yDestino = valorMaior; // yDestino recebe o maior valor
                 }
                 
                 // especionar casas intermediarias para saber se tem peça
-                for (int posicaoY = yOrigem+1; posicaoY < yDestino; posicaoY++) {
-                    Casa intermediaria = tabuleiro.getCasa(xOrigem, posicaoY);
+                for (int y = yOrigem+1; y < yDestino; y++) {
+                    Casa intermediaria = tabuleiro.getCasa(xOrigem, y);
                     if (intermediaria.possuiPeca() == true) {
                         return false;
                     }
