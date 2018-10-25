@@ -6,8 +6,8 @@
  * @version (a version number or a date)
  */
 public class Torre extends Peca
-    private boolean jogada;
 {
+    private boolean jogada;
 
     /**
      * Constructor for objects of class Torre
