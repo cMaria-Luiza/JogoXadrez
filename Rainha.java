@@ -26,7 +26,7 @@ public class Rainha extends Peca
         }
     }
     
-    public Boolean podeMover(Casa destino) {
+    public boolean podeMover(Casa destino) {
         // coordenadas
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
