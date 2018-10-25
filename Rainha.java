@@ -51,16 +51,19 @@ public class Rainha extends Peca
             }
             
             // movendo-se na diagonal
-            if (xDestino != xOrigem && yDestino != yOrigem && distanciaX == distanciaY) {
-                // especionar casas intermediarias para saber se tem peça
-                for (int x = xOrigem + 1; x < xDestino; x++) {
-                    for (int y = yOrigem + 1; y < yDestino; y++) {
-                        Casa intermediaria = tabuleiro.getCasa(x, y);
-                        if (intermediaria.possuiPeca() == true) {
-                            return false;
-                        }
+            if (distanciaX == distanciaY) {
+                int x = xOrigem;
+                int y = yOrigem;
+                // checagem de casas intermediarias
+                while(x < xDestino-1 && y < yDestino-1) { 
+                    x++;
+                    y++;
+                    Casa intermediaria = tabuleiro.getCasa(x, y);
+                    if (intermediaria.possuiPeca() == true) {
+                        return false;
                     }
                 }
+                return true;
             }
             // movendo-se horizontalmente 
             else if (xOrigem != xDestino && yOrigem == yDestino) {
@@ -89,41 +92,6 @@ public class Rainha extends Peca
             return false;
         }
         return true;
-            /*// movimento horizontal 
-            if (xDestino == xOrigem){
-                // determina yOrigem como menor valor e yDestino com o maior valor
-                // ajuda a percorrer o for do menor para o maior
-                
-                // vasculhar as casas até o yDestino verificando se tem peca adversaria, se tiver, nao pode mover
-                for (int i = yOrigem; i < yDestino; i++) {
-                    if (tabuleiro.getCasa(xOrigem, i).possuiPeca() && tabuleiro.getCasa(xOrigem, i).getTipoPeca()%2 != casa.getTipoPeca()%2) {
-                            return false;
-                    }
-                }
-            }
-            // movimento vertical
-            else if (yDestino == yOrigem) {
-                // vasculhar as casas até o xDestino verificando se tem peca adversaria, se tiver, nao pode mover
-                for (int i = xOrigem; i < xDestino; i++) {
-                    if (tabuleiro.getCasa(i, yOrigem).possuiPeca() && tabuleiro.getCasa(i, yOrigem).getTipoPeca()%2 != casa.getTipoPeca()%2) {
-                            return false;
-                    }
-                }
-            }
-            // movimento diagonal
-            else {                
-                for (int i = xOrigem; i < xDestino; i++) {
-                    for (int j = yOrigem; j < yDestino; j++) {
-                        if ((tabuleiro.getCasa(i, yOrigem).possuiPeca() && tabuleiro.getCasa(i, yOrigem).getTipoPeca()%2 != casa.getTipoPeca()%2)
-                             && (tabuleiro.getCasa(xOrigem, j).possuiPeca() && tabuleiro.getCasa(xOrigem, j).getTipoPeca()%2 != casa.getTipoPeca()%2)) {
-                            return false;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
-        return true;*/
     }
 }
 
