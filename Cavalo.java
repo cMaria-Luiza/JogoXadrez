@@ -24,7 +24,7 @@ public class Cavalo extends Peca
         }
     }
      
-    public Boolean podeMover(Casa destino) {
+    public boolean podeMover(Casa destino) {
         
         // dentro do if vai verificar se o destino possui peca e se possuir o movimento so sera valido se o tipo for diferente do tipo da casa
         if (((tipo == 4 || tipo == 5)  && (destino.possuiPeca() == false ||  capturar(destino) == true)) &&
