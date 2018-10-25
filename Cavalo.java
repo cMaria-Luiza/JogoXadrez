@@ -27,16 +27,15 @@ public class Cavalo extends Peca
     public boolean podeMover(Casa destino) {
         
         // dentro do if vai verificar se o destino possui peca e se possuir o movimento so sera valido se o tipo for diferente do tipo da casa
-        if (destino.possuiPeca() == false ||  capturar(destino) == true) { 
-            if ((casa.getX()+2 == destino.getX() || casa.getX()-2 == destino.getX()) &&
-               (casa.getY()+1 == destino.getY() || casa.getY()-1 == destino.getY())) {
+        if (((tipo == 4 || tipo == 5)  && (destino.possuiPeca() == false ||  capturar(destino) == true)) &&
+            ((casa.getX()+2 == destino.getX() || casa.getX()-2 == destino.getX()) &&
+                (casa.getY()+1 == destino.getY() || casa.getY()-1 == destino.getY()))){
                 return true;
-            }
-        } else if (destino.possuiPeca() == false ||  capturar(destino) == true) {
-            if ((casa.getX()+1 == destino.getX() || casa.getX()-1 == destino.getX()) && 
-             (casa.getY()+2 == destino.getY() || casa.getY()-2 == destino.getY())) {
+                
+        } else if (((tipo == 4 || tipo == 5) && (destino.possuiPeca() == false ||  capturar(destino) == true)) &&
+           ((casa.getX()+1 == destino.getX() || casa.getX()-1 == destino.getX()) && 
+                (casa.getY()+2 == destino.getY() || casa.getY()-2 == destino.getY()))){
                 return true;
-            }
         }
         
         return false;    

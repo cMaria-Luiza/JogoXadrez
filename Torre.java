@@ -6,15 +6,13 @@
  * @version (a version number or a date)
  */
 public class Torre extends Peca{
-    private boolean primeiraJogada;
-    
+
     /**
      * Constructor for objects of class Torre
      */
     public Torre(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
        super(casa, tipo, tabuleiro);
-       primeiraJogada = false;
     }
         
     public void mover(Casa destino){      
@@ -22,10 +20,10 @@ public class Torre extends Peca{
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
-            primeiraJogada = true;
+            primeiraJogadaTorre = false;
         }
     }
-            
+           
     public boolean podeMover(Casa destino){
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
@@ -42,12 +40,13 @@ public class Torre extends Peca{
                 }
                 
                 // especionar casas intermediarias para saber se tem peça
-                for (int x = xOrigem; x < xDestino; x++) {
+                for (int x = xOrigem+1; x < xDestino; x++) {
                     Casa intermediaria = tabuleiro.getCasa(x, yOrigem);
                     if (intermediaria.possuiPeca() == true) {
                         return false;
                     }
                 }
+                return true;
             }
             // movendo-se verticalmente
             else if (xOrigem == xDestino && yOrigem != yDestino) {
@@ -69,4 +68,5 @@ public class Torre extends Peca{
         }
         return false;
     }
+          
 }

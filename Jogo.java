@@ -100,9 +100,10 @@ public class Jogo {
         Peca peca = origem.getPeca();
         peca.mover(destino);
         // se destino possui uma peça é porque a peça se moveu, então pode mudar de turno 
+        
         if (destino.getPeca() != null && destino.getPeca().equals(peca)) {
             mudarTurno();  
-        }
+        } 
     }   
    
     /**

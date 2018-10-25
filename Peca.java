@@ -30,16 +30,15 @@ public class Peca {
     protected Casa casa;
     protected int tipo;
     protected Tabuleiro tabuleiro;
-    protected boolean jogador;
-    
+    protected boolean primeiraJogadaTorre;
     public Peca(Casa casa, int tipo, Tabuleiro tabuleiro) {
         this.casa = casa;    
         this.tipo = tipo;
         casa.colocarPeca(this);
         this.tabuleiro = tabuleiro;
-        jogador = true;
+        primeiraJogadaTorre = true;
     }
-    
+        
     /**
      * Movimenta a peca para uma nova casa.
      * @param destino nova casa que ira conter esta peca.
@@ -74,7 +73,10 @@ public class Peca {
         }
         return false;
      }
-       
+         
+    public boolean primeiraJogadaTorre(){
+       return primeiraJogadaTorre;
+    }
     
     public boolean podeMover(Casa destino){
         return false;
@@ -86,7 +88,7 @@ public class Peca {
         }
         return i;
     }
-    
+       
     /**
      * Valor    Tipo
      *   0   Branca (Peao)
