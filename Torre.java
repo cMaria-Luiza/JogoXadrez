@@ -6,13 +6,14 @@
  * @version (a version number or a date)
  */
 public class Torre extends Peca{
-
+    private boolean primeiraJogadaTorre;
     /**
      * Constructor for objects of class Torre
      */
     public Torre(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
        super(casa, tipo, tabuleiro);
+       primeiraJogadaTorre = true;
     }
         
     public void mover(Casa destino){      
@@ -68,5 +69,8 @@ public class Torre extends Peca{
         }
         return false;
     }
-          
+    
+    public boolean primeiraJogadaTorre(){
+       return primeiraJogadaTorre;
+    }      
 }

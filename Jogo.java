@@ -57,7 +57,7 @@ public class Jogo {
             Peca bispoBranco= new Bispo(tabuleiro.getCasa(x,0),Peca.BISPO_BRANCO, tabuleiro); 
             Peca bispoPreto= new Bispo(tabuleiro.getCasa(x,7),Peca.BISPO_PRETO, tabuleiro);
         }        
-        for(int x=1; x<6; x = x + 5){
+        for(int x=1; x<7; x = x + 5){
             //posicionar os cavalos
             Peca cavaloBranco= new Cavalo(tabuleiro.getCasa(x,0),Peca.CAVALO_BRANCO, tabuleiro); 
             Peca cavaloPreto= new Cavalo(tabuleiro.getCasa(x,7),Peca.CAVALO_PRETO, tabuleiro);

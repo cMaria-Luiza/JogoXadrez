@@ -30,11 +30,13 @@ public class Cavalo extends Peca
         if (((tipo == 4 || tipo == 5)  && (destino.possuiPeca() == false ||  capturar(destino) == true)) &&
             ((casa.getX()+2 == destino.getX() || casa.getX()-2 == destino.getX()) &&
                 (casa.getY()+1 == destino.getY() || casa.getY()-1 == destino.getY()))){
+                moveuDuasCasas = false;
                 return true;
                 
         } else if (((tipo == 4 || tipo == 5) && (destino.possuiPeca() == false ||  capturar(destino) == true)) &&
            ((casa.getX()+1 == destino.getX() || casa.getX()-1 == destino.getX()) && 
                 (casa.getY()+2 == destino.getY() || casa.getY()-2 == destino.getY()))){
+                moveuDuasCasas = false;
                 return true;
         }
         

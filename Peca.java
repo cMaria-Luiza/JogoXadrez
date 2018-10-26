@@ -30,13 +30,13 @@ public class Peca {
     protected Casa casa;
     protected int tipo;
     protected Tabuleiro tabuleiro;
-    protected boolean primeiraJogadaTorre;
+    protected boolean moveuDuasCasas;
     public Peca(Casa casa, int tipo, Tabuleiro tabuleiro) {
         this.casa = casa;    
         this.tipo = tipo;
         casa.colocarPeca(this);
         this.tabuleiro = tabuleiro;
-        primeiraJogadaTorre = true;
+        moveuDuasCasas = false;
     }
         
     /**
@@ -73,12 +73,9 @@ public class Peca {
             return false; 
         }
         return false;
-     }
-         
-    public boolean primeiraJogadaTorre(){
-       return primeiraJogadaTorre;
-    }
-    
+     }        
+      
+       
     public boolean podeMover(Casa destino){
         return false;
     }
@@ -89,7 +86,8 @@ public class Peca {
         }
         return i;
     }    
-      
+    
+    
     /**
      * Valor    Tipo
      *   0   Branca (Peao)

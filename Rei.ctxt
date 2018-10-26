@@ -10,5 +10,5 @@ comment3.target=boolean\ podeMover(Casa)
 comment4.params=
 comment4.target=boolean\ primeiraJogadaRei()
 comment5.params=destino
-comment5.target=void\ roque(Casa)
+comment5.target=boolean\ roque(Casa)
 numComments=6
