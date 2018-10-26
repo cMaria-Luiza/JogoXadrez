@@ -85,8 +85,25 @@ public class Peca {
             return -i;
         }
         return i;
-    }    
+    } 
     
+    public boolean roqueTorre(Casa destino){
+        return false;
+    }
+    
+    public boolean roqueRei(Casa destino){
+         return false;
+    }
+    
+    public boolean roque(Casa destino){
+        if(roqueTorre(destino) == true && roqueRei(destino) == true){
+            roqueTorre(destino);
+            roqueRei(destino);
+            return true;
+        }
+        return false;
+    }
+     
     
     /**
      * Valor    Tipo

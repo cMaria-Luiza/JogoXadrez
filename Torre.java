@@ -23,8 +23,47 @@ public class Torre extends Peca{
             casa = destino;
             primeiraJogadaTorre = false;
         }
+        roqueTorre(destino);
+        
     }
-           
+    
+     public boolean roqueTorre(Casa destino){
+         if( primeiraJogadaTorre == true){
+             if(roque(destino) == true){
+               if(tabuleiro.getCasa(5,0).possuiPeca() == false && tabuleiro.getCasa(6,0).possuiPeca() == false &&
+                   tabuleiro.getCasa(7,0). getTipoPeca() == 2){
+                   Casa colocarTorre =  tabuleiro.getCasa(5,0);
+                   colocarTorre.colocarPeca(this);
+                   casa = colocarTorre;
+                   return true;
+                } 
+                else if(tabuleiro.getCasa(5,7).possuiPeca() == false && tabuleiro.getCasa(6,7).possuiPeca() == false &&
+                   tabuleiro.getCasa(7,7). getTipoPeca() == 3 ){
+                   Casa colocarTorre =  tabuleiro.getCasa(5,7);
+                   colocarTorre.colocarPeca(this);
+                   casa = colocarTorre;     
+                   return true;
+                }
+               else if(tabuleiro.getCasa(3,0).possuiPeca() == false && tabuleiro.getCasa(2,0).possuiPeca() == false
+                     && tabuleiro.getCasa(1,0).possuiPeca() == false && tabuleiro.getCasa(0,0). getTipoPeca() == 2 ){
+                   Casa colocarTorre =  tabuleiro.getCasa(0,3);
+                   colocarTorre.colocarPeca(this);
+                   casa = colocarTorre;
+                   return true;
+                } 
+               else if(tabuleiro.getCasa(3,7).possuiPeca() == false && tabuleiro.getCasa(2,7).possuiPeca() == false
+                     && tabuleiro.getCasa(1,7).possuiPeca() == false && tabuleiro.getCasa(0,7). getTipoPeca() == 3){
+                   Casa colocarTorre =  tabuleiro.getCasa(7,3);
+                   colocarTorre.colocarPeca(this);
+                   casa = colocarTorre;
+                   return true;              
+                }
+            }
+        }
+         return false;
+    }     
+     
+    
     public boolean podeMover(Casa destino){
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();

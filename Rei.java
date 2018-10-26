@@ -16,7 +16,6 @@ public class Rei extends Peca
     }
       
     public void mover(Casa destino) {
-       
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
@@ -27,7 +26,7 @@ public class Rei extends Peca
             casa = destino;
             primeiraJogadaRei = false;
         } 
-        if(roque(destino) == true){
+        if( roqueRei(destino) == true){
             roque(destino);
             casa.removerPeca();
             destino.colocarPeca(this);
@@ -56,48 +55,36 @@ public class Rei extends Peca
         return primeiraJogadaRei;
     }
     
-    public boolean roque(Casa destino){
+    public boolean roqueRei(Casa destino){
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
-        int yDestino = destino.getY();
+        int yDestino = destino.getY();        
         if(primeiraJogadaRei == true){
-           if(xOrigem+2 == xDestino && yOrigem == yDestino){
-               if(tipo == 10 && tabuleiro.getCasa(5,0).possuiPeca() == false && tabuleiro.getCasa(6,0).possuiPeca() == false &&
-               tabuleiro.getCasa(7,0). getTipoPeca() == 2){
-                    Peca torre = new Torre(tabuleiro.getCasa(7,0),2, tabuleiro);
-                   tabuleiro.getCasa(5,0).colocarPeca(torre);
-                   tabuleiro.getCasa(7,0).removerPeca();
-                   return true;
-                }    
-               else if(tipo == 11 && tabuleiro.getCasa(5,7).possuiPeca() == false && tabuleiro.getCasa(6,7).possuiPeca() == false &&
-               tabuleiro.getCasa(7,7). getTipoPeca() == 3){
-                   Peca torre = new Torre(tabuleiro.getCasa(7,7),3, tabuleiro);
-                   tabuleiro.getCasa(5,7).colocarPeca(torre);
-                   tabuleiro.getCasa(7,7).removerPeca();
-                   return true;            
-            }
-          }
-          else if(xOrigem-2 == xDestino && yOrigem == yDestino){
-                 if((tipo == 10) && tabuleiro.getCasa(3,0).possuiPeca() == false && tabuleiro.getCasa(2,0).possuiPeca() == false
-                 && tabuleiro.getCasa(1,0).possuiPeca() == false && tabuleiro.getCasa(0,0). getTipoPeca() == 2 ){
-                   Peca torre = new Torre(tabuleiro.getCasa(0,0),2, tabuleiro);
-                   tabuleiro.getCasa(3,0).colocarPeca(torre);
-                   tabuleiro.getCasa(0,0).removerPeca();
-                   return true;
-                 }
-                 else if((tipo ==11) && tabuleiro.getCasa(3,7).possuiPeca() == false && tabuleiro.getCasa(2,7).possuiPeca() == false
-                 && tabuleiro.getCasa(1,7).possuiPeca() == false && tabuleiro.getCasa(0,7). getTipoPeca() == 3){
-                   Peca torre = new Torre(tabuleiro.getCasa(0,7),3, tabuleiro);
-                   tabuleiro.getCasa(3,7).colocarPeca(torre);
-                   tabuleiro.getCasa(0,7).removerPeca();
-                   return true;
-                }             
+            if(roque(destino) == true){
+               if(xOrigem+2 == xDestino && yOrigem == yDestino){
+                   if(tipo == 10 && tabuleiro.getCasa(5,0).possuiPeca() == false && tabuleiro.getCasa(6,0).possuiPeca() == false &&
+                   tabuleiro.getCasa(7,0). getTipoPeca() == 2){
+                       return true;
+                    }    
+                   else if(tipo == 11 && tabuleiro.getCasa(5,7).possuiPeca() == false && tabuleiro.getCasa(6,7).possuiPeca() == false &&
+                   tabuleiro.getCasa(7,7). getTipoPeca() == 3){
+                       return true;            
+                }
+              }
+              else if(xOrigem-2 == xDestino && yOrigem == yDestino){
+                     if((tipo == 10) && tabuleiro.getCasa(3,0).possuiPeca() == false && tabuleiro.getCasa(2,0).possuiPeca() == false
+                     && tabuleiro.getCasa(1,0).possuiPeca() == false && tabuleiro.getCasa(0,0). getTipoPeca() == 2){
+                       return true;
+                     }
+                     else if((tipo ==11) && tabuleiro.getCasa(3,7).possuiPeca() == false && tabuleiro.getCasa(2,7).possuiPeca() == false
+                     && tabuleiro.getCasa(1,7).possuiPeca() == false && tabuleiro.getCasa(0,7). getTipoPeca() == 3){
+                       return true;
+                    }             
+               }
            }
         }
-        
         return false;
-        
     }
     
     }
