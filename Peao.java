@@ -1,3 +1,5 @@
+package JogoXadrez;
+
 import javax.swing.JOptionPane;
 import javax.swing.*;
 /**

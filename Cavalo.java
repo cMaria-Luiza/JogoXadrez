@@ -1,3 +1,5 @@
+package JogoXadrez;
+
 
 /**
  * Write a description of class Cavalo here.

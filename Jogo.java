@@ -1,3 +1,5 @@
+package JogoXadrez;
+
 
 /**
  * Armazena o tabuleiro e responsavel por posicionar as pecas.
@@ -92,7 +94,7 @@ public class Jogo {
         // se destino possui uma peça é porque a peça se moveu, então pode mudar de turno 
         
         if (destino.getPeca() != null && destino.getPeca().equals(peca)) {
-            mudarTurno();  
+            //mudarTurno();  
         } 
        
     }   

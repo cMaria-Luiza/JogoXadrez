@@ -1,3 +1,5 @@
+package JogoXadrez;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -74,8 +76,9 @@ public class Peca {
         }
         return false;
      }        
-      
-       
+    
+    
+     
     public boolean podeMover(Casa destino){
         return false;
     }
@@ -85,25 +88,7 @@ public class Peca {
             return -i;
         }
         return i;
-    } 
-    
-    public boolean roqueTorre(Casa destino){
-        return false;
-    }
-    
-    public boolean roqueRei(Casa destino){
-         return false;
-    }
-    
-    public boolean roque(Casa destino){
-        if(roqueTorre(destino) == true && roqueRei(destino) == true){
-            roqueTorre(destino);
-            roqueRei(destino);
-            return true;
-        }
-        return false;
-    }
-     
+    }    
     
     /**
      * Valor    Tipo
