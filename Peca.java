@@ -48,7 +48,7 @@ public class Peca {
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino; 
-                       
+
         }
     }
    
@@ -88,8 +88,8 @@ public class Peca {
             return -i;
         }
         return i;
-    }
-           
+    }    
+      
     /**
      * Valor    Tipo
      *   0   Branca (Peao)

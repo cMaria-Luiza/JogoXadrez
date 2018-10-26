@@ -8,7 +8,7 @@ import javax.swing.*;
  */
 public class Peao extends Peca 
 {
-    //testando o github
+    private boolean primeiraJogada;
     
     /**
      * Constructor for objects of class Peao
@@ -16,6 +16,7 @@ public class Peao extends Peca
     public Peao(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
         super(casa, tipo, tabuleiro); 
+        primeiraJogada = true;
     }       
     
     public void mover(Casa destino){
@@ -24,9 +25,9 @@ public class Peao extends Peca
             destino.colocarPeca(this);
             casa = destino;
             troca(destino);
+            primeiraJogada = false;
          } 
-        
-         
+                 
     }
     
     public boolean podeMover(Casa destino){
