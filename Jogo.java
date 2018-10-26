@@ -42,37 +42,27 @@ public class Jogo {
      * Utilizado na inicializa�ao do jogo.
      */
     protected void criarPecas() {
-        for(int linha=0; linha<8; linha++){
-           //posicionar os peões brancos
-           Peca peaoBranco = new Peao(tabuleiro.getCasa(linha,1), Peca.PEAO_BRANCO, tabuleiro);
-           //posicionar os peões pretos
-           Peca peaoPreto = new Peao(tabuleiro.getCasa(linha,6), Peca.PEAO_PRETO, tabuleiro);
+        for(int x=0; x<8; x++){
+           //posicionar os peões 
+           Peca peaoBranco = new Peao(tabuleiro.getCasa(x,1), Peca.PEAO_BRANCO, tabuleiro);
+           Peca peaoPreto = new Peao(tabuleiro.getCasa(x,6), Peca.PEAO_PRETO, tabuleiro);
         }
-        
-        //posicionar as torres brancas
-        Peca torreBranca = new Torre(tabuleiro.getCasa(0,0),Peca.TORRE_BRANCA, tabuleiro);
-        Peca torreBranca1 = new Torre(tabuleiro.getCasa(7,0),Peca.TORRE_BRANCA, tabuleiro);
-                
-        //posicionar as torres pretas
-        Peca torrePreta= new Torre(tabuleiro.getCasa(0,7),Peca.TORRE_PRETA, tabuleiro);
-        Peca torrePreta1= new Torre(tabuleiro.getCasa(7,7),Peca.TORRE_PRETA, tabuleiro);
-        
-        //posicionar os bispos brancos
-        Peca bispoBranco= new Bispo(tabuleiro.getCasa(2,0),Peca.BISPO_BRANCO, tabuleiro);        
-        Peca bispoBranco1= new Bispo(tabuleiro.getCasa(5,0),Peca.BISPO_BRANCO, tabuleiro);
-                
-        //posicionar os bispos pretos
-        Peca bispoPreto= new Bispo(tabuleiro.getCasa(2,7),Peca.BISPO_PRETO, tabuleiro);
-        Peca bispoPreto1= new Bispo(tabuleiro.getCasa(5,7),Peca.BISPO_PRETO, tabuleiro);
-        
-        //posicionar os cavalos brancos
-        Peca cavaloBranco= new Cavalo(tabuleiro.getCasa(1,0),Peca.CAVALO_BRANCO, tabuleiro);
-        Peca cavaloBranco1= new Cavalo(tabuleiro.getCasa(6,0),Peca.CAVALO_BRANCO, tabuleiro);
-                
-        //posicionar os cavalos pretos
-        Peca cavaloPreto= new Cavalo(tabuleiro.getCasa(1,7),Peca.CAVALO_PRETO, tabuleiro);
-        Peca cavaloPreto1= new Cavalo(tabuleiro.getCasa(6,7),Peca.CAVALO_PRETO, tabuleiro);
-        
+        for(int x=0; x<8; x = x + 7){
+            //posicionar as torres
+            Peca torreBranca = new Torre(tabuleiro.getCasa(x,0),Peca.TORRE_BRANCA, tabuleiro);    
+            Peca torrePreta= new Torre(tabuleiro.getCasa(x,7),Peca.TORRE_PRETA, tabuleiro);
+        }
+        for(int x=2; x<6; x = x + 3){
+            //posicionar os bispos
+            Peca bispoBranco= new Bispo(tabuleiro.getCasa(x,0),Peca.BISPO_BRANCO, tabuleiro); 
+            Peca bispoPreto= new Bispo(tabuleiro.getCasa(x,7),Peca.BISPO_PRETO, tabuleiro);
+        }        
+        for(int x=1; x<6; x = x + 5){
+            //posicionar os cavalos
+            Peca cavaloBranco= new Cavalo(tabuleiro.getCasa(x,0),Peca.CAVALO_BRANCO, tabuleiro); 
+            Peca cavaloPreto= new Cavalo(tabuleiro.getCasa(x,7),Peca.CAVALO_PRETO, tabuleiro);
+        }
+              
         //posicionar a rainha branca
         Peca rainhaBranca= new Rainha(tabuleiro.getCasa(3,0),Peca.RAINHA_BRANCA, tabuleiro);
               
@@ -93,10 +83,10 @@ public class Jogo {
      * @param destinoX linha da Casa de destino.
      * @param destinoY coluna da Casa de destino.
      */
-    public void moverPeca(int origemX, int origemY, int destinoX, int destinoY) {
+    public void moverPeca(CasaGUI casaOrigem, CasaGUI casaDestino) {
         //onde ocorrera as movimentações das peças
-        Casa origem = tabuleiro.getCasa(origemX, origemY);
-        Casa destino = tabuleiro.getCasa(destinoX, destinoY);
+        Casa origem = tabuleiro.getCasa(casaOrigem.getPosicaoX(),casaOrigem.getPosicaoY());
+        Casa destino = tabuleiro.getCasa(casaDestino.getPosicaoX(), casaDestino.getPosicaoY());
         Peca peca = origem.getPeca();
         peca.mover(destino);
         // se destino possui uma peça é porque a peça se moveu, então pode mudar de turno 
@@ -104,6 +94,7 @@ public class Jogo {
         if (destino.getPeca() != null && destino.getPeca().equals(peca)) {
             mudarTurno();  
         } 
+       
     }   
    
     /**

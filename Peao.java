@@ -19,12 +19,14 @@ public class Peao extends Peca
     }       
     
     public void mover(Casa destino){
-        if (podeMover(destino)) {
+        if (podeMover(destino)){
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
             troca(destino);
-        }
+         } 
+        
+         
     }
     
     public boolean podeMover(Casa destino){
@@ -32,33 +34,36 @@ public class Peao extends Peca
         //primeiro if se for o primeiro movimento pode andar duas casas em Y
         //segundo if condição de movimentar apenas uma casa 
         //terceiro if condição de captura        
-        if(tipo == 0  && destino.possuiPeca() == false && casa.getY() ==  1 && casa.getX() == destino.getX() && casa.getY()+2 == destino.getY()){
-            if(tabuleiro.getCasa(destino.getX(), casa.getY()+1).possuiPeca() == false){
-                return true;
+        if(tipo == 0){
+            if(destino.possuiPeca() == false && casa.getY() ==  1 && casa.getX() == destino.getX() && casa.getY()+2 == destino.getY()){
+                if(tabuleiro.getCasa(destino.getX(), casa.getY()+1).possuiPeca() == false){
+                  return true;
+                }
             }
-        }
-        else if(tipo == 0  && destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()+1 == destino.getY()){
-            return true;        
-        }
-        else if((tipo == 0  && destino.possuiPeca() == true && capturar(destino) == true) &&
-        ((casa.getX()+1 == destino.getX()) ||(casa.getX()-1 == destino.getX()))
-        && (casa.getY()+1 == destino.getY())){
-            return true;
+            else if(destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()+1 == destino.getY()){
+                return true;        
+            }
+            else if((destino.possuiPeca() == true && capturar(destino) == true) &&
+            ((casa.getX()+1 == destino.getX()) ||(casa.getX()-1 == destino.getX())) && (casa.getY()+1 == destino.getY())){
+                return true;
+           }
         }
         
         // condições de movimento do peão preto
         //mesmas condições que o branco, so muda o tipo
-        if(tipo == 1  && destino.possuiPeca() == false && casa.getY() == 6 && casa.getX() == destino.getX() && casa.getY()-2 == destino.getY()){
-            if(tabuleiro.getCasa(destino.getX(), casa.getY()-1).possuiPeca() == false){
-                return true;
-            }        
-        }
-        else if(tipo == 1  && destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()-1 == destino.getY()){
-            return true;
-        }
-        else if((tipo == 1  && destino.possuiPeca() == true && capturar(destino) == true) &&
-        ((casa.getX()+1 == destino.getX()) || (casa.getX()-1 == destino.getX())) && (casa.getY()-1 == destino.getY())){
-            return true;
+        if(tipo == 1){
+            if(destino.possuiPeca() == false && casa.getY() == 6 && casa.getX() == destino.getX() && casa.getY()-2 == destino.getY()){
+                if(tabuleiro.getCasa(destino.getX(), casa.getY()-1).possuiPeca() == false){
+                    return true;
+                }        
+            }
+            else if(destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()-1 == destino.getY()){
+                 return true;
+            }
+            else if((destino.possuiPeca() == true && capturar(destino) == true) &&
+            ((casa.getX()+1 == destino.getX()) || (casa.getX()-1 == destino.getX())) && (casa.getY()-1 == destino.getY())){
+                 return true;
+            }
         }
         
         return false;
