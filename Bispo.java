@@ -1,3 +1,5 @@
+package JogoXadrez;
+
 
 /**
  * Write a description of class Bispo here.
@@ -24,7 +26,7 @@ public class Bispo extends Peca
         }
     }
     
-    public Boolean podeMover(Casa destino) {
+    public boolean podeMover(Casa destino) {
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
@@ -46,13 +48,16 @@ public class Bispo extends Peca
         }
         
         if (destino.possuiPeca() == false || capturar(destino) == true) {
-            if (xDestino != xOrigem && yDestino != yOrigem && distanciaX == distanciaY) {
-                for (int x = xOrigem + 1; x < xDestino; x++) {
-                    for (int y = yOrigem + 1; y < yDestino; y++) {
-                        Casa intermediaria = tabuleiro.getCasa(x, y);
-                        if (intermediaria.possuiPeca() == true) {
-                            return false;
-                        }
+            if (distanciaX == distanciaY) {
+                int x = xOrigem;
+                int y = yOrigem;
+                // checagem de casas intermediarias
+                while(x < xDestino-1 && y < yDestino-1) { 
+                    x++;
+                    y++;
+                    Casa intermediaria = tabuleiro.getCasa(x, y);
+                    if (intermediaria.possuiPeca() == true) {
+                        return false;
                     }
                 }
                 return true;

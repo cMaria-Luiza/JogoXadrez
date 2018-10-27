@@ -1,3 +1,5 @@
+ 
+
 import javax.swing.JOptionPane;
 import javax.swing.*;
 /**
@@ -8,52 +10,63 @@ import javax.swing.*;
  */
 public class Peao extends Peca 
 {
-
+    private boolean primeiraJogada;
+    
     /**
      * Constructor for objects of class Peao
      */
     public Peao(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
         super(casa, tipo, tabuleiro); 
+        primeiraJogada = true;
     }       
     
     public void mover(Casa destino){
-        if (podeMover(destino)) {
+        if (podeMover(destino)){
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
             troca(destino);
-        }
+            primeiraJogada = false;
+         } 
+                 
     }
     
-    public Boolean podeMover(Casa destino){
+    public boolean podeMover(Casa destino){
         // condições de movimento de peao branco
         //primeiro if se for o primeiro movimento pode andar duas casas em Y
         //segundo if condição de movimentar apenas uma casa 
         //terceiro if condição de captura        
-        if(tipo == 0  && destino.possuiPeca() == false && casa.getY() ==  1 && casa.getX() == destino.getX() && casa.getY()+2 == destino.getY()){
-            return true;
-        }
-        else if(tipo == 0  && destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()+1 == destino.getY()){
-            return true;        
-        }
-        else if((tipo == 0  && destino.possuiPeca() == true && capturar(destino) == true) &&
-        ((casa.getX()+1 == destino.getX()) ||(casa.getX()-1 == destino.getX()))
-        && (casa.getY()+1 == destino.getY())){
-            return true;
+        if(tipo == 0){
+            if(destino.possuiPeca() == false && casa.getY() ==  1 && casa.getX() == destino.getX() && casa.getY()+2 == destino.getY()){
+                if(tabuleiro.getCasa(destino.getX(), casa.getY()+1).possuiPeca() == false){
+                  return true;
+                }
+            }
+            else if(destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()+1 == destino.getY()){
+                return true;        
+            }
+            else if((destino.possuiPeca() == true && capturar(destino) == true) &&
+            ((casa.getX()+1 == destino.getX()) ||(casa.getX()-1 == destino.getX())) && (casa.getY()+1 == destino.getY())){
+                return true;
+           }
         }
         
         // condições de movimento do peão preto
         //mesmas condições que o branco, so muda o tipo
-        if(tipo == 1  && destino.possuiPeca() == false && casa.getY() == 6 && casa.getX() == destino.getX() && casa.getY()-2 == destino.getY()){
-            return true;
-        }
-        else if(tipo == 1  && destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()-1 == destino.getY()){
-            return true;
-        }
-        else if((tipo == 1  && destino.possuiPeca() == true && capturar(destino) == true) &&
-        ((casa.getX()+1 == destino.getX()) || (casa.getX()-1 == destino.getX())) && (casa.getY()-1 == destino.getY())){
-            return true;
+        if(tipo == 1){
+            if(destino.possuiPeca() == false && casa.getY() == 6 && casa.getX() == destino.getX() && casa.getY()-2 == destino.getY()){
+                if(tabuleiro.getCasa(destino.getX(), casa.getY()-1).possuiPeca() == false){
+                    return true;
+                }        
+            }
+            else if(destino.possuiPeca() == false && casa.getX() == destino.getX() && casa.getY()-1 == destino.getY()){
+                 return true;
+            }
+            else if((destino.possuiPeca() == true && capturar(destino) == true) &&
+            ((casa.getX()+1 == destino.getX()) || (casa.getX()-1 == destino.getX())) && (casa.getY()-1 == destino.getY())){
+                 return true;
+            }
         }
         
         return false;

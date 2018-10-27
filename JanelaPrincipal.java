@@ -1,3 +1,5 @@
+ 
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,13 +20,13 @@ public class JanelaPrincipal extends JFrame {
     private CasaGUI casaClicadaOrigem;
     private CasaGUI casaClicadaDestino;
     private int jogador;
-    
     /**
      * Responde aos cliques realizados no tabuleiro.
      * 
      * @param casaClicada Casa que o jogador clicou.
      */
     public void reagir(CasaGUI casaClicada) {
+              
         if (primeiroClique) {
             if (casaClicada.possuiPeca()) {
                 if(jogo.suaVez(casaClicada.getTipoPeca())) {
@@ -49,8 +51,7 @@ public class JanelaPrincipal extends JFrame {
                 }
                 else {
                     casaClicadaDestino = casaClicada;
-                    jogo.moverPeca(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY(),
-                            casaClicadaDestino.getPosicaoX(), casaClicadaDestino.getPosicaoY());
+                    jogo.moverPeca(casaClicadaOrigem, casaClicadaDestino);
                     casaClicadaOrigem.atenuar();
                     primeiroClique = true;
                     atualizar();             
@@ -63,7 +64,7 @@ public class JanelaPrincipal extends JFrame {
      */
     public JanelaPrincipal() {
         initComponents();
-
+        
         this.primeiroClique = true;
         this.casaClicadaOrigem = null;
         this.casaClicadaDestino = null;

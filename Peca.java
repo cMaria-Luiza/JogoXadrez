@@ -1,3 +1,5 @@
+package JogoXadrez;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
@@ -30,16 +32,15 @@ public class Peca {
     protected Casa casa;
     protected int tipo;
     protected Tabuleiro tabuleiro;
-    protected boolean jogador;
-    
+    protected boolean moveuDuasCasas;
     public Peca(Casa casa, int tipo, Tabuleiro tabuleiro) {
         this.casa = casa;    
         this.tipo = tipo;
         casa.colocarPeca(this);
         this.tabuleiro = tabuleiro;
-        jogador = true;
+        moveuDuasCasas = false;
     }
-    
+        
     /**
      * Movimenta a peca para uma nova casa.
      * @param destino nova casa que ira conter esta peca.
@@ -49,10 +50,11 @@ public class Peca {
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino; 
+
         }
     }
    
-    public Boolean capturar(Casa destino){
+    public boolean capturar(Casa destino){
         //nao pode matar o rei
         if ((casa.getTipoPeca()%2 != 0 && destino.getTipoPeca() == 10) || (casa.getTipoPeca()%2 == 0 && destino.getTipoPeca() == 11)){
             JOptionPane.showMessageDialog(null, " Xeque");
@@ -72,11 +74,12 @@ public class Peca {
         else if(casa.getTipoPeca()%2 != 0 && destino.getTipoPeca()%2 != 0){
             return false; 
         }
-        return null;
-     }
-       
+        return false;
+     }        
     
-    public Boolean podeMover(Casa destino){
+    
+     
+    public boolean podeMover(Casa destino){
         return false;
     }
      
@@ -85,7 +88,7 @@ public class Peca {
             return -i;
         }
         return i;
-    }
+    }    
     
     /**
      * Valor    Tipo

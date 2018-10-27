@@ -1,3 +1,5 @@
+package JogoXadrez;
+
 
 /**
  * Write a description of class Torre here.
@@ -5,78 +7,31 @@
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Torre extends Peca
-{
-
+public class Torre extends Peca{
+    private boolean primeiraJogadaTorre;
     /**
      * Constructor for objects of class Torre
      */
     public Torre(Casa casa, int tipo, Tabuleiro tabuleiro)
     {
-       super(casa, tipo, tabuleiro); 
+       super(casa, tipo, tabuleiro);
+       primeiraJogadaTorre = true;
     }
-    
+        
     public void mover(Casa destino){      
         if (podeMover(destino)) {
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino;
+            primeiraJogadaTorre = false;
         }
     }
     
-    /*  public Boolean podeMover(Casa destino){
-        int xOrigem = casa.getX();
-        int yOrigem = casa.getY();
-        int xDestino = destino.getX();
-        int yDestino = destino.getY();
-        //verifica se esta andando na horizontal e vertical
-        // verifica se possui peça entre a casa de origem e a casa de destino
-        
-        if(tipo == 2 || tipo == 3){
-            if((xOrigem != xDestino && yOrigem == yDestino) || (yOrigem != yDestino && xOrigem == xDestino)){
-                if(destino.possuiPeca() == false || capturar(destino) == true){                                     
-                    if(xOrigem > xDestino){
-                        for(int linha = xOrigem; linha >= xDestino; linha--){
-                            if(tabuleiro.getCasa(linha,yOrigem).possuiPeca()==false){
-                                return true;
-                            }
-                            
-                        }
-                    } 
-                    else if(xOrigem < xDestino){
-                        for(int linha = xOrigem; linha <= xDestino; linha++){
-                            
-                            if(tabuleiro.getCasa(linha,yOrigem).possuiPeca()==false){
-                                return true;
-                            }
-                           
-                        }
-                    } else if(yOrigem > yDestino){
-                        for(int coluna = yOrigem; coluna >= yDestino; coluna--){
-                            
-                            if(tabuleiro.getCasa(xOrigem, coluna).possuiPeca()==false){
-                                return true;
-                            } 
-                            
-                        }
-                    }
-                    else if(yOrigem < yDestino){
-                        for(int coluna = yOrigem; coluna <= yDestino; coluna++){
-                            
-                            if( tabuleiro.getCasa(xOrigem, coluna).possuiPeca()==false){
-                                return true;
-                            }
-                            
-                        }
-                    }
-                }
-            }          
-                    
-        }
+    public boolean roque(Casa destino){
         return false;
-    }*/
+    }
     
-     public Boolean podeMover(Casa destino) {
+    public boolean podeMover(Casa destino){
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
@@ -92,12 +47,13 @@ public class Torre extends Peca
                 }
                 
                 // especionar casas intermediarias para saber se tem peça
-                for (int x = xOrigem; x < xDestino; x++) {
+                for (int x = xOrigem+1; x < xDestino; x++) {
                     Casa intermediaria = tabuleiro.getCasa(x, yOrigem);
                     if (intermediaria.possuiPeca() == true) {
                         return false;
                     }
                 }
+                return true;
             }
             // movendo-se verticalmente
             else if (xOrigem == xDestino && yOrigem != yDestino) {
@@ -119,4 +75,8 @@ public class Torre extends Peca
         }
         return false;
     }
+    
+    public boolean primeiraJogadaTorre(){
+       return primeiraJogadaTorre;
+    }      
 }

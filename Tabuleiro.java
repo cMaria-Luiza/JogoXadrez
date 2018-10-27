@@ -1,3 +1,5 @@
+package JogoXadrez;
+
 
 /**
  * O Tabuleiro do jogo. 
@@ -9,7 +11,7 @@
 public class Tabuleiro {
 
     private Casa[][] casas;
-
+    
     public Tabuleiro() {
         casas = new Casa[8][8];
         for (int x = 0; x < 8; x++) {
@@ -17,8 +19,9 @@ public class Tabuleiro {
                 Casa casa = new Casa(x, y);
                 casas[x][y] = casa;
             }
-        }
+        }        
     }
+    
     /**
      * @param x linha
      * @param y coluna
@@ -26,5 +29,5 @@ public class Tabuleiro {
      */
     public Casa getCasa(int x, int y) {
         return casas[x][y];
-    }
+    }    
 }
