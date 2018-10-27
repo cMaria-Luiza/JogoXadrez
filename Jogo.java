@@ -49,7 +49,6 @@ public class Jogo {
            Peca peaoBranco = new Peao(tabuleiro.getCasa(x,1), Peca.PEAO_BRANCO, tabuleiro);
            Peca peaoPreto = new Peao(tabuleiro.getCasa(x,6), Peca.PEAO_PRETO, tabuleiro);
         }
-<<<<<<< HEAD
         
         //posicionar as torres brancas
         Peca torreBranca = new Torre(tabuleiro.getCasa(0,0),Peca.TORRE_BRANCA, tabuleiro);
@@ -75,7 +74,6 @@ public class Jogo {
         Peca cavaloPreto = new Cavalo(tabuleiro.getCasa(1,7),Peca.CAVALO_PRETO, tabuleiro);
         Peca cavaloPreto1 = new Cavalo(tabuleiro.getCasa(6,7),Peca.CAVALO_PRETO, tabuleiro);
         
-=======
         for(int x=0; x<8; x = x + 7){
             //posicionar as torres
             Peca torreBranca = new Torre(tabuleiro.getCasa(x,0),Peca.TORRE_BRANCA, tabuleiro);    
@@ -92,7 +90,7 @@ public class Jogo {
             Peca cavaloPreto= new Cavalo(tabuleiro.getCasa(x,7),Peca.CAVALO_PRETO, tabuleiro);
         }
               
->>>>>>> 742f43b326c6f397887a2eaeecc61b3bcb9829f6
+
         //posicionar a rainha branca
         Peca rainhaBranca = new Rainha(tabuleiro.getCasa(3,0),Peca.RAINHA_BRANCA, tabuleiro);
               
