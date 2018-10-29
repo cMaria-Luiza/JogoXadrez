@@ -33,7 +33,7 @@ public class Peca extends Movimentacao{
     protected int tipo;
     protected Tabuleiro tabuleiro;
     protected ArrayList<Casa> casas;
-    protected boolean moveuDuasCasas;
+    protected boolean moveuDuasCasas;   
     
     public Peca(Casa casa, int tipo, Tabuleiro tabuleiro) {
         this.casa = casa;    
@@ -98,8 +98,7 @@ public class Peca extends Movimentacao{
         }
         return i;
     }    
-    
-    
+           
     /**
      * Valor    Tipo
      *   0   Branca (Peao)
