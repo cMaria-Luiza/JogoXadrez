@@ -1,5 +1,3 @@
-package JogoXadrez;
-
 
 /**
  * O Tabuleiro do jogo. 
@@ -19,7 +17,8 @@ public class Tabuleiro {
                 Casa casa = new Casa(x, y);
                 casas[x][y] = casa;
             }
-        }        
+        }
+        
     }
     
     /**
@@ -28,6 +27,14 @@ public class Tabuleiro {
      * @return Casa na posicao (x,y)
      */
     public Casa getCasa(int x, int y) {
-        return casas[x][y];
-    }    
+        for(int i = 0; i < 8; i++) {
+            for(int j = 0; j < 8; j++) {
+                if(x == casas[i][j].getX() && y == casas[i][j].getY()) {
+                    return casas[i][j];
+                }
+            }
+        }
+        return null;
+    }
+    
 }

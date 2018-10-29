@@ -1,10 +1,10 @@
-package JogoXadrez;
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 /**
  * Representa uma Pe�a do jogo.
  * Possui uma casa e um tipo associado.
@@ -12,7 +12,7 @@ import javax.swing.*;
  * @author Alan Moraes &lt;alan@ci.ufpb.br&gt;
  * @author Leonardo Villeth &lt;lvilleth@cc.ci.ufpb.br&gt;
  */
-public class Peca {
+public class Peca extends Movimentacao{
     //peças brancas serao pares
     //peças pretas serao impares
     public static final int PEAO_BRANCO = 0;
@@ -32,15 +32,25 @@ public class Peca {
     protected Casa casa;
     protected int tipo;
     protected Tabuleiro tabuleiro;
+    protected ArrayList<Casa> casas;
     protected boolean moveuDuasCasas;
+    
     public Peca(Casa casa, int tipo, Tabuleiro tabuleiro) {
         this.casa = casa;    
         this.tipo = tipo;
         casa.colocarPeca(this);
         this.tabuleiro = tabuleiro;
         moveuDuasCasas = false;
+        casas = new ArrayList<Casa>();
     }
-        
+    
+    public void movimentos(int x, int y) {
+    }
+    
+    public ArrayList<Casa> getCasasPossiveis() {
+        return casas;
+    }
+    
     /**
      * Movimenta a peca para uma nova casa.
      * @param destino nova casa que ira conter esta peca.
@@ -50,8 +60,8 @@ public class Peca {
             casa.removerPeca();
             destino.colocarPeca(this);
             casa = destino; 
-
         }
+        casas.clear();
     }
    
     public boolean capturar(Casa destino){
@@ -62,33 +72,33 @@ public class Peca {
         }
         
         //verifica os tipos das peças
-        if(casa.getTipoPeca()%2 == 0 && destino.getTipoPeca()%2 != 0){
+        if (casa.getTipoPeca()%2 != destino.getTipoPeca()%2) {
             return true;
-        }
-        else if(casa.getTipoPeca()%2 != 0 && destino.getTipoPeca()%2 == 0){
-            return true;
-        }
-        else if(casa.getTipoPeca()%2 == 0 && destino.getTipoPeca()%2 == 0){
-            return false;
-        }
-        else if(casa.getTipoPeca()%2 != 0 && destino.getTipoPeca()%2 != 0){
-            return false; 
         }
         return false;
      }        
-    
-    
-     
+      
     public boolean podeMover(Casa destino){
+        int xOrigem = casa.getX();
+        int yOrigem = casa.getY();
+        casas.clear();
+        movimentos(xOrigem, yOrigem);
+        Iterator it = casas.iterator();
+        while(it.hasNext()) {
+            if (it.next().equals(destino)) {
+                return true;
+            }
+        }
         return false;
     }
-     
+   
     public int getDistancia(int i){
         if(i < 0){
             return -i;
         }
         return i;
     }    
+    
     
     /**
      * Valor    Tipo

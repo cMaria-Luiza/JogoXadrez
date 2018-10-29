@@ -1,11 +1,8 @@
- 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
+import java.util.ArrayList;
 /**
  * Tela do jogo.
  * Respons�vel por reagir aos cliques feitos pelo jogador.
@@ -19,7 +16,7 @@ public class JanelaPrincipal extends JFrame {
     private boolean primeiroClique;
     private CasaGUI casaClicadaOrigem;
     private CasaGUI casaClicadaDestino;
-    private int jogador;
+    
     /**
      * Responde aos cliques realizados no tabuleiro.
      * 
@@ -33,7 +30,12 @@ public class JanelaPrincipal extends JFrame {
                     casaClicadaOrigem = casaClicada;
                     casaClicadaOrigem.destacar();
                     primeiroClique = false;
-                }
+                    /*
+                    Casa origem = jogo.getTabuleiro().getCasa(casaClicadaOrigem.getPosicaoX(), casaClicadaOrigem.getPosicaoY());
+                    Peca peca = origem.getPeca();
+                    ArrayList<Casa> casas = new ArrayList<Casa>(); 
+                    casas = jogo.movimentosPossiveis(casaClicadaOrigem);
+                    peca.destacarCasas(casas); */                }
                 else {
                     JOptionPane.showMessageDialog(this, (jogo.turno() == 0 ? "Vez das peças brancas." : "Vez das peças pretas."));
                 }
@@ -41,8 +43,7 @@ public class JanelaPrincipal extends JFrame {
             else {
                 // clicou em uma posi�?o inv�lida, ent?o n?o faz nada.
                 JOptionPane.showMessageDialog(this, "Clique em uma peça.");
-            }
-            
+            }            
         }
         else { 
                 if (casaClicada == casaClicadaOrigem) {

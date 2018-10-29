@@ -1,5 +1,4 @@
-package JogoXadrez;
-
+import java.util.ArrayList;
 
 /**
  * Write a description of class Rei here.
@@ -17,89 +16,143 @@ public class Rei extends Peca
        primeiraJogadaRei = true;
     }
       
-    public void mover(Casa destino) {
-        int xOrigem = casa.getX();
-        int yOrigem = casa.getY();
-        int xDestino = destino.getX();
-        int yDestino = destino.getY();
-        if((podeMover(destino) == true)){
-            casa.removerPeca();
-            destino.colocarPeca(this);
-            casa = destino;
-            primeiraJogadaRei = false;
-        } 
-        if(roque(destino)){
-            casa.removerPeca();
-            destino.colocarPeca(this);
-            casa = destino;
-            primeiraJogadaRei = false;
+    public void movimentos(int x, int y) {
+        if(tabuleiro.getCasa(x+1, y) != null && (tabuleiro.getCasa(x+1, y).possuiPeca() == false || capturar(tabuleiro.getCasa(x+1, y)))) {
+            casas.add(tabuleiro.getCasa(x+1, y));
         }
-     }
+        if(tabuleiro.getCasa(x-1, y) != null && (tabuleiro.getCasa(x-1, y).possuiPeca() == false || capturar(tabuleiro.getCasa(x-1, y)))) {
+            casas.add(tabuleiro.getCasa(x-1, y));
+        }
+        if(tabuleiro.getCasa(x, y+1) != null && (tabuleiro.getCasa(x, y+1).possuiPeca() == false || capturar(tabuleiro.getCasa(x, y+1)))) {
+            casas.add(tabuleiro.getCasa(x, y+1));
+        }
+        if(tabuleiro.getCasa(x, y-1) != null && (tabuleiro.getCasa(x, y-1).possuiPeca() == false || capturar(tabuleiro.getCasa(x, y-1)))) {
+            casas.add(tabuleiro.getCasa(x, y-1));
+        }
+        if(tabuleiro.getCasa(x+1, y+1) != null && (tabuleiro.getCasa(x+1, y+1).possuiPeca() == false || capturar(tabuleiro.getCasa(x+1, y+1)))) {
+            casas.add(tabuleiro.getCasa(x+1, y+1));
+        }
+        if(tabuleiro.getCasa(x+1, y-1) != null && (tabuleiro.getCasa(x+1, y-1).possuiPeca() == false || capturar(tabuleiro.getCasa(x+1, y-1)))) {
+            casas.add(tabuleiro.getCasa(x+1, y-1));
+        }
+        if(tabuleiro.getCasa(x-1, y+1) != null && (tabuleiro.getCasa(x-1, y+1).possuiPeca() == false || capturar(tabuleiro.getCasa(x-1, y+1)))) {
+            casas.add(tabuleiro.getCasa(x-1, y+1));
+        }
+        if(tabuleiro.getCasa(x-1, y-1) != null && (tabuleiro.getCasa(x-1, y-1).possuiPeca() == false || capturar(tabuleiro.getCasa(x-1, y-1)))) {
+            casas.add(tabuleiro.getCasa(x-1, y-1));
+        }
+    }
     
-    public boolean podeMover(Casa destino){
-        int xOrigem = casa.getX();
-        int yOrigem = casa.getY();
-        int xDestino = destino.getX();
-        int yDestino = destino.getY();
-       
-        if(destino.possuiPeca() == false ||  capturar(destino) == true){
-            if(xOrigem+1 == xDestino || xOrigem-1 == xDestino || yOrigem+1 == yDestino || yOrigem-1 == yDestino){
-                return true;
-            }
-            else{
-               return false;
-        }
+    public void mover(Casa destino) {
+        if (primeiraJogadaRei && podeMover(destino)) {
+            primeiraJogadaRei = false;
         }
         
-        return false;
-    }    
+        if(roque(destino) == true){
+            roque(destino);
+            casa.removerPeca();
+            destino.colocarPeca(this);
+            casa = destino;
+        }
+        super.mover(destino);
+     }
     
     public boolean primeiraJogadaRei(){
         return primeiraJogadaRei;
     }
     
+    /*
     public boolean roque(Casa destino){
         int xOrigem = casa.getX();
         int yOrigem = casa.getY();
         int xDestino = destino.getX();
-        int yDestino = destino.getY();        
+        int yDestino = destino.getY();
         if(primeiraJogadaRei == true){
-            if(xOrigem+2 == xDestino && yOrigem == yDestino){
+           if(xOrigem+2 == xDestino && yOrigem == yDestino){
                if(tipo == 10 && tabuleiro.getCasa(5,0).possuiPeca() == false && tabuleiro.getCasa(6,0).possuiPeca() == false &&
-                  tabuleiro.getCasa(7,0). getTipoPeca() == 2){
-                      Peca torre = new Torre(tabuleiro.getCasa(7,0),Peca.TORRE_BRANCA, tabuleiro);    
-                      tabuleiro.getCasa(7,0).removerPeca();
-                      tabuleiro.getCasa(5,0).colocarPeca(torre);
-                      return true;
-               } 
+               tabuleiro.getCasa(7,0). getTipoPeca() == 2){
+                   Peca torre = tabuleiro.getCasa(7,0).getPeca();
+                   tabuleiro.getCasa(5,0).colocarPeca(torre);
+                   tabuleiro.getCasa(7,0).removerPeca();
+                   return true;
+                }    
                else if(tipo == 11 && tabuleiro.getCasa(5,7).possuiPeca() == false && tabuleiro.getCasa(6,7).possuiPeca() == false &&
-                 tabuleiro.getCasa(7,7). getTipoPeca() == 3){
-                      Peca torre = new Torre(tabuleiro.getCasa(7,7),Peca.TORRE_BRANCA, tabuleiro);    
-                      tabuleiro.getCasa(7,7).removerPeca();
-                      tabuleiro.getCasa(5,7).colocarPeca(torre); 
-                      return true;            
-                }
-            } else  if(xOrigem-2 == xDestino && yOrigem == yDestino){
-              if((tipo == 10) && tabuleiro.getCasa(3,0).possuiPeca() == false && tabuleiro.getCasa(2,0).possuiPeca() == false
-                && tabuleiro.getCasa(1,0).possuiPeca() == false && tabuleiro.getCasa(0,0). getTipoPeca() == 2){
-                      Peca torre = new Torre(tabuleiro.getCasa(0,0),Peca.TORRE_BRANCA, tabuleiro);    
-                      tabuleiro.getCasa(0,0).removerPeca();
-                      tabuleiro.getCasa(3,0).colocarPeca(torre);
-                     return true;
-               }     
-           }
-           else if(xOrigem-2 == xDestino && yOrigem == yDestino){
-               if((tipo ==11) && tabuleiro.getCasa(3,7).possuiPeca() == false && tabuleiro.getCasa(2,7).possuiPeca() == false
-                  && tabuleiro.getCasa(1,7).possuiPeca() == false && tabuleiro.getCasa(0,7). getTipoPeca() == 3){
-                       Peca torre = new Torre(tabuleiro.getCasa(7,0),Peca.TORRE_BRANCA, tabuleiro);    
-                      tabuleiro.getCasa(7,0).removerPeca();
-                      tabuleiro.getCasa(5,7).colocarPeca(torre);
-                      return true;
-               }             
+               tabuleiro.getCasa(7,7). getTipoPeca() == 3){
+                   Peca torre = tabuleiro.getCasa(7,7).getPeca();
+                   tabuleiro.getCasa(5,7).colocarPeca(torre);
+                   tabuleiro.getCasa(7,7).removerPeca();
+                   return true;            
             }
-         }
+          }
+          else if(xOrigem-2 == xDestino && yOrigem == yDestino){
+                 if((tipo == 10) && tabuleiro.getCasa(3,0).possuiPeca() == false && tabuleiro.getCasa(2,0).possuiPeca() == false
+                 && tabuleiro.getCasa(1,0).possuiPeca() == false && tabuleiro.getCasa(0,0). getTipoPeca() == 2 ){
+                   Peca torre = tabuleiro.getCasa(0,0).getPeca();
+                   tabuleiro.getCasa(3,0).colocarPeca(torre);
+                   tabuleiro.getCasa(0,0).removerPeca();
+                   return true;
+                 }
+                 else if((tipo ==11) && tabuleiro.getCasa(3,7).possuiPeca() == false && tabuleiro.getCasa(2,7).possuiPeca() == false
+                 && tabuleiro.getCasa(1,7).possuiPeca() == false && tabuleiro.getCasa(0,7). getTipoPeca() == 3){
+                   Peca torre = tabuleiro.getCasa(0,7).getPeca();
+                   tabuleiro.getCasa(3,7).colocarPeca(torre);
+                   tabuleiro.getCasa(0,7).removerPeca();
+                   return true;
+                }             
+           }
+        }
+        
         return false;
-    }   
-   
+        
     }
+    */
+   
+   public boolean roque(Casa destino){
+       int xOrigem = casa.getX();
+       int xDestino = destino.getX();
+       int yOrigem = casa.getY();
+       int yDestino = destino.getY();
+       
+       // roque pequeno
+       if(primeiraJogadaRei == true){
+            // roque pequeno
+             if(xOrigem+2 == xDestino && yOrigem == yDestino){
+              //peças brancas
+               if(tipo == 10 && tabuleiro.getCasa(5,0).possuiPeca() == false && tabuleiro.getCasa(6,0).possuiPeca() == false &&
+               tabuleiro.getCasa(7,0). getTipoPeca() == 2){
+                   tabuleiro.getCasa(7,0).removerPeca();
+                   Casa destinoT = tabuleiro.getCasa(5,0);
+                   Peca torre = new Torre(destinoT, 2, tabuleiro);
+                   return true;  
+              }
+              //pecas pretas
+              else if(tipo == 11 && tabuleiro.getCasa(5,7).possuiPeca() == false && tabuleiro.getCasa(6,7).possuiPeca() == false &&
+               tabuleiro.getCasa(7,7). getTipoPeca() == 3){
+                   tabuleiro.getCasa(7,7).removerPeca();
+                   Casa destinoT = tabuleiro.getCasa(5,7);
+                   Peca torre = new Torre(destinoT, 3, tabuleiro);
+                   return true;            
+            }
+          }
+          //roque grande
+           else if(xOrigem-2 == xDestino && yOrigem == yDestino){
+                 if((tipo == 10) && tabuleiro.getCasa(3,0).possuiPeca() == false && tabuleiro.getCasa(2,0).possuiPeca() == false
+                 && tabuleiro.getCasa(1,0).possuiPeca() == false && tabuleiro.getCasa(0,0). getTipoPeca() == 2 ){
+                   tabuleiro.getCasa(0,0).removerPeca();
+                   Casa destinoT = tabuleiro.getCasa(3,0);
+                   Peca torre = new Torre(destinoT, 2, tabuleiro);
+                   return true;
+                 }
+                 else if((tipo ==11) && tabuleiro.getCasa(3,7).possuiPeca() == false && tabuleiro.getCasa(2,7).possuiPeca() == false
+                 && tabuleiro.getCasa(1,7).possuiPeca() == false && tabuleiro.getCasa(0,7). getTipoPeca() == 3){
+                   tabuleiro.getCasa(0,7).removerPeca();
+                   Casa destinoT = tabuleiro.getCasa(3,7);
+                   Peca torre = new Torre(destinoT, 3, tabuleiro);
+                   return true;
+                }  
+          }
+      }
+       return false;
+   }
+}
     

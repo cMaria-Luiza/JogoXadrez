@@ -1,6 +1,4 @@
-package JogoXadrez;
-
-
+import java.util.ArrayList;
 /**
  * Write a description of class Torre here.
  *
@@ -9,6 +7,7 @@ package JogoXadrez;
  */
 public class Torre extends Peca{
     private boolean primeiraJogadaTorre;
+    
     /**
      * Constructor for objects of class Torre
      */
@@ -18,62 +17,66 @@ public class Torre extends Peca{
        primeiraJogadaTorre = true;
     }
         
+    public void movimentos(int x, int y) {
+        // vasculhar as casas a esquerda
+        for (int i = x-1; i >= 0; i--) {
+            if (tabuleiro.getCasa(i, y) != null) {
+                if (tabuleiro.getCasa(i, y).possuiPeca() && capturar(tabuleiro.getCasa(i, y))) {
+                    casas.add(tabuleiro.getCasa(i, y));  
+                    break;
+                }
+                else if (tabuleiro.getCasa(i, y).possuiPeca() && capturar(tabuleiro.getCasa(i, y)) == false){
+                    break;
+                }
+                casas.add(tabuleiro.getCasa(i, y));
+            }
+        }
+        // vasculhar as casas a direita
+        for (int i = x+1; i < 8; i++) {
+            if(tabuleiro.getCasa(i, y) != null) {
+                if (tabuleiro.getCasa(i, y).possuiPeca() && capturar(tabuleiro.getCasa(i, y))) {
+                    casas.add(tabuleiro.getCasa(i, y));  
+                    break;
+                }
+                else if (tabuleiro.getCasa(i, y).possuiPeca() && capturar(tabuleiro.getCasa(i, y)) == false){
+                    break;
+                }
+                casas.add(tabuleiro.getCasa(i, y));
+            }
+        }
+        // vasculhar as casas acima 
+        for (int i = y-1; i >= 0; i--) {
+            if (tabuleiro.getCasa(x, i) != null) {
+                if  (tabuleiro.getCasa(x, i).possuiPeca() && capturar(tabuleiro.getCasa(x, i))) {
+                    casas.add(tabuleiro.getCasa(x, i));  
+                    break;
+                }
+                else if (tabuleiro.getCasa(x, i).possuiPeca() && capturar(tabuleiro.getCasa(x, i)) == false){
+                    break;
+                }
+                casas.add(tabuleiro.getCasa(x, i));  
+            }
+        }
+        // vasculhar as casas abaixo
+        for (int i = y+1; i < 8; i++) {
+            if (tabuleiro.getCasa(x, i) != null) {
+                if (tabuleiro.getCasa(x, i).possuiPeca() && capturar(tabuleiro.getCasa(x, i))) {
+                    casas.add(tabuleiro.getCasa(x, i));  
+                    break;
+                }
+                else if (tabuleiro.getCasa(x, i).possuiPeca() && capturar(tabuleiro.getCasa(x, i)) == false){
+                    break;
+                }
+                casas.add(tabuleiro.getCasa(x, i));
+            }
+        }
+    }
+    
     public void mover(Casa destino){      
         if (podeMover(destino)) {
-            casa.removerPeca();
-            destino.colocarPeca(this);
-            casa = destino;
             primeiraJogadaTorre = false;
         }
-    }
-    
-    public boolean roque(Casa destino){
-        return false;
-    }
-    
-    public boolean podeMover(Casa destino){
-        int xOrigem = casa.getX();
-        int yOrigem = casa.getY();
-        int xDestino = destino.getX();
-        int yDestino = destino.getY();
-        
-        if (destino.possuiPeca() == false || capturar(destino) == true) {
-            // movendo-se horizontamente 
-            if (xOrigem != xDestino && yOrigem == yDestino) {
-                if (xOrigem > xDestino) {
-                    int valorMaior = xOrigem;
-                    xOrigem = xDestino; // xOrigem recebe o menor valor
-                    xDestino = valorMaior; // xDestino recebe o maior valor
-                }
-                
-                // especionar casas intermediarias para saber se tem peça
-                for (int x = xOrigem+1; x < xDestino; x++) {
-                    Casa intermediaria = tabuleiro.getCasa(x, yOrigem);
-                    if (intermediaria.possuiPeca() == true) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-            // movendo-se verticalmente
-            else if (xOrigem == xDestino && yOrigem != yDestino) {
-                if (yOrigem > yDestino) {
-                    int valorMaior = yOrigem;
-                    yOrigem = yDestino; // yOrigem recebe o menor valor
-                    yDestino = valorMaior; // yDestino recebe o maior valor
-                }
-                
-                // especionar casas intermediarias para saber se tem peça
-                for (int y = yOrigem+1; y < yDestino; y++) {
-                    Casa intermediaria = tabuleiro.getCasa(xOrigem, y);
-                    if (intermediaria.possuiPeca() == true) {
-                        return false;
-                    }
-                }
-                return true;
-            } 
-        }
-        return false;
+        super.mover(destino);
     }
     
     public boolean primeiraJogadaTorre(){

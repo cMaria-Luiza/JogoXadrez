@@ -1,6 +1,4 @@
-package JogoXadrez;
-
-
+import java.util.ArrayList;
 /**
  * Write a description of class Bispo here.
  *
@@ -18,53 +16,94 @@ public class Bispo extends Peca
         super(casa, tipo, tabuleiro);
     }
     
-    public void mover(Casa destino) {
-        if (podeMover(destino)) {
-            casa.removerPeca();
-            destino.colocarPeca(this);
-            casa = destino;
+    public void movimentos(int x, int y) {
+        int i = x;
+        int j = y;;
+        // pega a diagonal direita-acima
+        while(i < 8 && j < 8) {
+            ++i;
+            ++j;
+            if (tabuleiro.getCasa(i, j) != null && tabuleiro.getCasa(i, j).possuiPeca() && capturar(tabuleiro.getCasa(i, j))) {
+                // se a casa conter peça adversaria, ela tambem é adicionada ao ArrayList
+                if (tabuleiro.getCasa(i, j).getTipoPeca()%2 != tipo%2){
+                    casas.add(tabuleiro.getCasa(i, j));
+                }
+                break;
+            }
+            else if (tabuleiro.getCasa(i, j) != null && tabuleiro.getCasa(i, j).possuiPeca() == false) {
+                casas.add(tabuleiro.getCasa(i, j));                  
+            }
+            else {
+                break;
+            }
+        }
+        // reseta os valores das coordenadas de verificação para os valores das coordenadas da origem 
+        i = x;
+        j = y;
+        // pega a diagonal esquerda-acima 
+        while(i >= 0 && j < 8) {
+            --i;
+            ++j;
+            if(tabuleiro.getCasa(i, j) != null && tabuleiro.getCasa(i, j).possuiPeca() &&  capturar(tabuleiro.getCasa(i, j))) {
+                // se a casa conter peça adversaria, ela tambem é adicionada ao ArrayList
+                if (tabuleiro.getCasa(i, j).getTipoPeca()%2 != tipo%2){
+                    casas.add(tabuleiro.getCasa(i, j));
+                }
+                break;
+            }
+            else if (tabuleiro.getCasa(i, j) != null && tabuleiro.getCasa(i, j).possuiPeca() == false) {
+                casas.add(tabuleiro.getCasa(i, j));                  
+            }
+            else {
+                break;
+            }
+        }
+        // reseta os valores das coordenadas de verificação para os valores das coordenadas da origem 
+        i = x;
+        j = y;
+        // pega a diagonal direita-abaixo
+        while(i < 8 && j >= 0) {
+            ++i;
+            --j;
+            if (tabuleiro.getCasa(i, j) != null && tabuleiro.getCasa(i, j).possuiPeca() && capturar(tabuleiro.getCasa(i, j))) {
+                // se a casa conter peça adversaria, ela tambem é adicionada ao ArrayList
+                if (tabuleiro.getCasa(i, j).getTipoPeca()%2 != tipo%2){
+                    casas.add(tabuleiro.getCasa(i, j));
+                }
+                break;
+            }
+            else if (tabuleiro.getCasa(i, j) != null && tabuleiro.getCasa(i, j).possuiPeca() == false) {
+                casas.add(tabuleiro.getCasa(i, j));                  
+            }
+            else {
+                break;
+            }
+        }
+        // reseta os valores das coordenadas de verificação para os valores das coordenadas da origem 
+        i = x;
+        j = y;
+        // pega a diagonal esquerda-abaixo
+        while(i >= 0 && j >= 0) {
+            --i;
+            --j;
+            if (tabuleiro.getCasa(i, j) != null && tabuleiro.getCasa(i, j).possuiPeca() &&  capturar(tabuleiro.getCasa(i, j))) {
+                // se a casa conter peça adversaria, ela tambem é adicionada ao ArrayList
+                if (tabuleiro.getCasa(i, j).getTipoPeca()%2 != tipo%2){
+                    casas.add(tabuleiro.getCasa(i, j));
+                } 
+                break;
+            }
+            else if (tabuleiro.getCasa(i, j) != null && tabuleiro.getCasa(i, j).possuiPeca() == false) {
+                casas.add(tabuleiro.getCasa(i, j));                  
+            }
+            else {
+                break;
+            }
         }
     }
     
-    public boolean podeMover(Casa destino) {
-        int xOrigem = casa.getX();
-        int yOrigem = casa.getY();
-        int xDestino = destino.getX();
-        int yDestino = destino.getY();
-    
-        int distanciaX = getDistancia(xDestino - xOrigem);
-        int distanciaY = getDistancia(yDestino - yOrigem);
-        
-        if (xOrigem > xDestino) {
-           int valorMaior = xOrigem;
-           xOrigem = xDestino;
-           xDestino = valorMaior;
-        }
-            
-        if (yOrigem > yDestino) {
-            int valorMaior = yOrigem;
-            yOrigem = yDestino;
-            yDestino = valorMaior;
-        }
-        
-        if (destino.possuiPeca() == false || capturar(destino) == true) {
-            if (distanciaX == distanciaY) {
-                int x = xOrigem;
-                int y = yOrigem;
-                // checagem de casas intermediarias
-                while(x < xDestino-1 && y < yDestino-1) { 
-                    x++;
-                    y++;
-                    Casa intermediaria = tabuleiro.getCasa(x, y);
-                    if (intermediaria.possuiPeca() == true) {
-                        return false;
-                    }
-                }
-                return true;
-            }
-        }
-        // se não entrar no if, não pode mover-se
-        return false;
+    public void mover(Casa destino) {
+        super.mover(destino);
     }
 }
 

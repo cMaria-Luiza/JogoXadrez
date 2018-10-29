@@ -1,6 +1,4 @@
- 
-
-
+import java.util.ArrayList;
 /**
  * Write a description of class Cavalo here.
  *
@@ -18,14 +16,45 @@ public class Cavalo extends Peca
       super(casa, tipo, tabuleiro);
     }
     
-    public void mover(Casa destino) {
-        if (podeMover(destino)) {
-            casa.removerPeca();
-            destino.colocarPeca(this);
-            casa = destino;
+    public void movimentos(int x, int y) {
+        if (tabuleiro.getCasa(x+2, y+1) != null && (tabuleiro.getCasa(x+2, y+1).possuiPeca() == false ||
+                capturar(tabuleiro.getCasa(x+2, y+1)))) {
+            casas.add(tabuleiro.getCasa(x+2, y+1));
+        }
+        if (tabuleiro.getCasa(x+2, y-1) != null && (tabuleiro.getCasa(x+2, y-1).possuiPeca() == false || 
+                capturar(tabuleiro.getCasa(x+2, y-1)))) {
+            casas.add(tabuleiro.getCasa(x+2, y-1));
+        }
+        if (tabuleiro.getCasa(x-2, y+1) != null && (tabuleiro.getCasa(x-2, y+1).possuiPeca() == false || 
+                capturar(tabuleiro.getCasa(x-2, y+1)))) {
+            casas.add(tabuleiro.getCasa(x-2, y+1));
+        }
+        if (tabuleiro.getCasa(x-2, y-1) != null && (tabuleiro.getCasa(x-2, y-1).possuiPeca() == false || 
+                capturar(tabuleiro.getCasa(x-2, y-1)))) {
+            casas.add(tabuleiro.getCasa(x-2, y-1));
+        }
+        if (tabuleiro.getCasa(x+1, y+2) != null && (tabuleiro.getCasa(x+1, y+2).possuiPeca() == false ||
+                capturar(tabuleiro.getCasa(x+1, y+2)))) {
+            casas.add(tabuleiro.getCasa(x+1, y+2));
+        }
+        if (tabuleiro.getCasa(x-1, y+2) != null && (tabuleiro.getCasa(x-1, y+2).possuiPeca() == false ||
+                capturar(tabuleiro.getCasa(x-1, y+2)))) {
+            casas.add(tabuleiro.getCasa(x-1, y+2));
+        }
+        if (tabuleiro.getCasa(x+1, y-2) != null && (tabuleiro.getCasa(x+1, y-2).possuiPeca() == false ||
+                capturar(tabuleiro.getCasa(x+1, y-2)))) {
+            casas.add(tabuleiro.getCasa(x+1, y-2));
+        }
+        if (tabuleiro.getCasa(x-1, y-2) != null && (tabuleiro.getCasa(x-1, y-2).possuiPeca() == false ||
+                capturar(tabuleiro.getCasa(x-1, y-2)))) {
+            casas.add(tabuleiro.getCasa(x-1, y-2));
         }
     }
-     
+    
+    public void mover(Casa destino) {
+        super.mover(destino);
+    }
+    /* 
     public boolean podeMover(Casa destino) {
         
         // dentro do if vai verificar se o destino possui peca e se possuir o movimento so sera valido se o tipo for diferente do tipo da casa
@@ -43,5 +72,5 @@ public class Cavalo extends Peca
         }
         
         return false;    
-    }
+    }*/
 }

@@ -1,5 +1,3 @@
-package JogoXadrez;
-
 
 /**
  * Representa uma Casa do tabuleiro.
